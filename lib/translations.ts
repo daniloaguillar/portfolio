@@ -88,7 +88,7 @@ export const translations = {
         },
         continente: {
           description:
-            "Vivência presencial do programa de regulação emocional para ansiedade, conduzida pela psicóloga Ediane Ribeiro. Um dia de conexão com o próprio sentir — para reconhecer as emoções como bússola interna que conduz à saúde e a escolhas mais autênticas. Realizada no Rio de Janeiro, na Casa Savana (Rua Camerino, 162), em 30/05/2026, das 09h às 17h. Turma reduzida, vagas super limitadas.",
+            "Identidade visual para a Continente Experience, vivência presencial de regulação emocional para ansiedade conduzida pela psicóloga Ediane Ribeiro. A marca foi desenvolvida para transmitir acolhimento, profundidade e a sensação de reconexão com as próprias emoções.",
           deliverables:
             "Criação de logo, identidade cromática, tipografia, aplicações digitais e manual de marca.",
         },
@@ -202,7 +202,7 @@ export const translations = {
         },
         continente: {
           description:
-            "In-person emotional regulation workshop for anxiety, led by psychologist Ediane Ribeiro. A day of connecting with your own emotions as an internal compass — for those who want to handle anxiety better and make more authentic choices. Held in Rio de Janeiro, at Casa Savana (Rua Camerino, 162), on 05/30/2026, from 9am to 5pm. Small group, very limited spots.",
+            "Visual identity for Continente Experience, an in-person emotional regulation program for anxiety led by psychologist Ediane Ribeiro. The brand was developed to convey warmth, depth and the feeling of reconnecting with one's own emotions.",
           deliverables:
             "Logo creation, chromatic identity, typography, digital applications and brand manual.",
         },
@@ -316,7 +316,7 @@ export const translations = {
         },
         continente: {
           description:
-            "Vivencia presencial del programa de regulación emocional para ansiedad, conducida por la psicóloga Ediane Ribeiro. Un día de conexión con las propias emociones como brújula interna — para quienes quieren manejar mejor la ansiedad y tomar decisiones más auténticas. Realizada en Río de Janeiro, en la Casa Savana (Rua Camerino, 162), el 30/05/2026, de 09h a 17h. Grupo reducido, cupos muy limitados.",
+            "Identidad visual para Continente Experience, programa presencial de regulación emocional para ansiedad conducido por la psicóloga Ediane Ribeiro. La marca fue desarrollada para transmitir calidez, profundidad y la sensación de reconexión con las propias emociones.",
           deliverables:
             "Creación de logo, identidad cromática, tipografía, aplicaciones digitales y manual de marca.",
         },
