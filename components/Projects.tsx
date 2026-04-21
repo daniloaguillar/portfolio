@@ -177,17 +177,17 @@ function ProjectCard({
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
           </div>
 
-          {/* Caption abaixo da imagem */}
-          <div className="bg-accent border-t-2 border-[#252525] px-5 py-4">
+          {/* Caption */}
+          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs px-3 py-1 border border-[#252525]/40 text-[#252525] font-sans tracking-wide rounded-full">
+              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
               </span>
-              <span className="text-xs text-[#252525]/50 font-sans">{project.year}</span>
+              <span className="text-xs text-white/30 font-sans">{project.year}</span>
             </div>
             <div className="flex items-center justify-between gap-4">
               <h3
-                className={`font-display font-light text-[#252525] leading-tight ${
+                className={`font-display font-light text-white leading-tight ${
                   featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
                 }`}
               >
@@ -196,7 +196,7 @@ function ProjectCard({
               <motion.span
                 animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
                 transition={{ duration: 0.25 }}
-                className="text-[#252525] text-sm font-sans shrink-0"
+                className="text-accent text-sm font-sans shrink-0"
               >
                 →
               </motion.span>
@@ -204,44 +204,50 @@ function ProjectCard({
           </div>
         </>
       ) : (
-        /* Branding: dark card com aspect fixo */
-        <div className={`relative overflow-hidden aspect-[9/16] md:aspect-[4/3]`}>
-          <div className="absolute inset-0 bg-[#252525]" />
-          <div
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
-          <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
-            <div className="flex items-start justify-between">
-              <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+        /* Identidade Visual: dark card + caption */
+        <>
+          <div className="relative overflow-hidden aspect-[9/16] md:aspect-[4/3]">
+            <div className="absolute inset-0 bg-[#252525]" />
+            <div
+              className="absolute inset-0 opacity-[0.07]"
+              style={{
+                backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
+                backgroundSize: "40px 40px",
+              }}
+            />
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+            <motion.div
+              animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
+                {viewLabel}
+              </span>
+            </motion.div>
+          </div>
+          {/* Caption */}
+          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
               </span>
               <span className="text-xs text-white/30 font-sans">{project.year}</span>
             </div>
-            <div>
-              <motion.div
-                animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-                className="mb-3"
-              >
-                <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
-                  {viewLabel}
-                </span>
-              </motion.div>
-              <h3 className="text-2xl md:text-3xl font-display font-light text-white leading-tight">
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="text-xl md:text-2xl font-display font-light text-white leading-tight">
                 {project.name}
               </h3>
+              <motion.span
+                animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                transition={{ duration: 0.25 }}
+                className="text-accent text-sm font-sans shrink-0"
+              >
+                →
+              </motion.span>
             </div>
           </div>
-          <motion.div
-            animate={hovered ? { opacity: 1 } : { opacity: 0 }}
-            className="absolute inset-0 border border-accent/30 pointer-events-none rounded-xl"
-          />
-        </div>
+        </>
       )}
     </motion.div>
   );
@@ -299,23 +305,33 @@ function ProjectModal({
             {project.siteImage && (
               <>
                 {/* Desktop */}
-                <div className="hidden md:block relative w-full h-80 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="hidden md:block relative w-full h-80 rounded-lg overflow-hidden mb-8 border border-offwhite/10"
+                >
                   <img
                     src={project.siteImage}
                     alt={`${project.name} — site completo`}
                     className="w-full site-scroll-anim"
                     style={{ display: "block", willChange: "transform" }}
                   />
-                </div>
+                </motion.div>
                 {/* Mobile — proporção 1080x1350 (4:5) */}
-                <div className="block md:hidden relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="block md:hidden relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-8 border border-offwhite/10"
+                >
                   <img
                     src={project.siteImageMobile ?? project.siteImage}
                     alt={`${project.name} — site mobile`}
                     className="w-full site-scroll-anim"
                     style={{ display: "block", willChange: "transform" }}
                   />
-                </div>
+                </motion.div>
               </>
             )}
 
