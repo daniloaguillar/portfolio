@@ -171,11 +171,11 @@ function ProjectCard({
               className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           )}
-          {/* Desktop cover */}
+          {/* Desktop cover — object-contain para mostrar a capa completa */}
           <img
             src={project.image}
             alt={project.name}
-            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${project.imageMobile ? "hidden md:block" : ""}`}
+            className={`absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 ${project.imageMobile ? "hidden md:block" : ""}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#252525] via-[#252525]/55 to-[#252525]/15" />
         </>
