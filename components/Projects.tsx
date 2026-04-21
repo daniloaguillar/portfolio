@@ -177,7 +177,7 @@ function ProjectCard({
             alt={project.name}
             className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${project.imageMobile ? "hidden md:block" : ""}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#252525]/90 via-[#252525]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#252525] via-[#252525]/55 to-[#252525]/15" />
         </>
       ) : (
         <>
