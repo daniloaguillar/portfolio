@@ -487,15 +487,18 @@ function ProjectModal({
                   onClick={() => { setLightboxSrc(project.manualPages![manualPage]); setLightboxIsCarousel(true); }}
                   className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
                 >
-                  <motion.img
-                    key={project.manualPages[manualPage]}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.12 }}
-                    src={project.manualPages[manualPage]}
-                    alt={`${project.name} — Manual p.${manualPage + 1}`}
-                    className="w-full block"
-                  />
+                  {/* Container com proporção fixa evita que a troca de página resetar o scroll do modal */}
+                  <div className="relative w-full aspect-[210/297]">
+                    <motion.img
+                      key={project.manualPages[manualPage]}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.12 }}
+                      src={project.manualPages[manualPage]}
+                      alt={`${project.name} — Manual p.${manualPage + 1}`}
+                      className="absolute inset-0 w-full h-full object-contain"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/60 transition-colors duration-300 flex items-center justify-center">
                     <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide border border-white/40">
                       {tp.expandBtn}
