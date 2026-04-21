@@ -13,6 +13,7 @@ const siteProjects = [
     year: 2026,
     url: "https://www.julianagoes.com.br",
     featured: true,
+    image: "/juliana-goes.webp",
     tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
   },
   {
@@ -100,7 +101,7 @@ const brandingProjects = [
   },
 ];
 
-type ProjectData = typeof siteProjects[0] | typeof brandingProjects[0];
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string };
 
 function ProjectCard({
   project,
@@ -130,16 +131,28 @@ function ProjectCard({
       onMouseLeave={() => setHovered(false)}
       data-hoverable
     >
-      {/* Fundo preto fixo */}
-      <div className="absolute inset-0 bg-[#252525]" />
-      {/* Grid offwhite */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
+      {/* Fundo: imagem ou cor sólida */}
+      {project.image ? (
+        <>
+          <img
+            src={project.image}
+            alt={project.name}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[#252525]" />
+          <div
+            className="absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
+        </>
+      )}
       {/* Hover overlay sutil */}
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
 
