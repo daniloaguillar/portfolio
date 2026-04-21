@@ -28,6 +28,9 @@ export const translations = {
       deliveredLabel: "O que foi feito",
       visitBtn: "Visitar site",
       visitCaseBtn: "Ver case",
+      manualLabel: "Manual de marca",
+      expandBtn: "Clique para ampliar",
+      openPdfBtn: "Abrir manual",
       items: {
         juliana: {
           description:
@@ -83,6 +86,12 @@ export const translations = {
           deliverables:
             "Criação de logo, identidade cromática, tipografia, aplicações digitais e manual de marca.",
         },
+        continente: {
+          description:
+            "Identidade visual para a Continente Experience, empresa de turismo e experiências. A marca foi desenvolvida para evocar aventura, sofisticação e a sensação de descoberta — posicionando a empresa como referência em experiências únicas.",
+          deliverables:
+            "Criação de logo, paleta de cores, tipografia, aplicações digitais e manual de marca.",
+        },
       },
     },
     about: {
@@ -133,6 +142,9 @@ export const translations = {
       deliveredLabel: "What was done",
       visitBtn: "Visit site",
       visitCaseBtn: "View case",
+      manualLabel: "Brand manual",
+      expandBtn: "Click to expand",
+      openPdfBtn: "Open manual",
       items: {
         juliana: {
           description:
@@ -188,6 +200,12 @@ export const translations = {
           deliverables:
             "Logo creation, chromatic identity, typography, digital applications and brand manual.",
         },
+        continente: {
+          description:
+            "Visual identity for Continente Experience, a tourism and experiences company. The brand was developed to evoke adventure, sophistication and the feeling of discovery — positioning the company as a reference in unique experiences.",
+          deliverables:
+            "Logo creation, color palette, typography, digital applications and brand manual.",
+        },
       },
     },
     about: {
@@ -238,6 +256,9 @@ export const translations = {
       deliveredLabel: "Qué se hizo",
       visitBtn: "Visitar sitio",
       visitCaseBtn: "Ver caso",
+      manualLabel: "Manual de marca",
+      expandBtn: "Haga clic para ampliar",
+      openPdfBtn: "Abrir manual",
       items: {
         juliana: {
           description:
@@ -292,6 +313,12 @@ export const translations = {
             "Identidad visual creada para el Curso Trauma y Regulación de la psicóloga Ediane Ribeiro. La marca fue desarrollada para reflejar calidez, profesionalismo y la seriedad del tema — aplicada posteriormente en la landing page del curso.",
           deliverables:
             "Creación de logo, identidad cromática, tipografía, aplicaciones digitales y manual de marca.",
+        },
+        continente: {
+          description:
+            "Identidad visual para Continente Experience, empresa de turismo y experiencias. La marca fue desarrollada para evocar aventura, sofisticación y la sensación de descubrimiento — posicionando a la empresa como referencia en experiencias únicas.",
+          deliverables:
+            "Creación de logo, paleta de colores, tipografía, aplicaciones digitales y manual de marca.",
         },
       },
     },

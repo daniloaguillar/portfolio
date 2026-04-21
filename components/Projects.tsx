@@ -114,6 +114,8 @@ const brandingProjects = [
     year: 2026,
     url: "",
     featured: false,
+    image: "/capitalconsorcio.webp",
+    manual: "/capitalconsorcio-manual.pdf",
     tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
   },
   {
@@ -124,11 +126,25 @@ const brandingProjects = [
     year: 2026,
     url: "",
     featured: false,
+    image: "/trauma-id.webp",
+    manual: "/trauma-manual.jpg",
     tags: ["Logo", "Identidade cromática", "Aplicações digitais", "Manual de marca"],
+  },
+  {
+    id: 10,
+    key: "continente" as const,
+    name: "Continente Experience",
+    type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
+    year: 2026,
+    url: "",
+    featured: false,
+    image: "/continente.webp",
+    manual: "/continente-manual.jpg",
+    tags: ["Logo", "Identidade cromática", "Tipografia", "Manual de marca"],
   },
 ];
 
-type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; imageMobile?: string; siteImage?: string; siteImageMobile?: string };
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; imageMobile?: string; siteImage?: string; siteImageMobile?: string; manual?: string };
 
 function ProjectCard({
   project,
@@ -204,17 +220,30 @@ function ProjectCard({
           </div>
         </>
       ) : (
-        /* Identidade Visual: dark card + caption */
+        /* Identidade Visual: capa + caption */
         <>
-          <div className="relative overflow-hidden aspect-[9/16] md:aspect-[4/3]">
-            <div className="absolute inset-0 bg-[#252525]" />
-            <div
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
-                backgroundSize: "40px 40px",
-              }}
-            />
+          <div className="relative overflow-hidden aspect-square md:aspect-[15/11]">
+            {project.image ? (
+              <>
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+              </>
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-[#252525]" />
+                <div
+                  className="absolute inset-0 opacity-[0.07]"
+                  style={{
+                    backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
+                  }}
+                />
+              </>
+            )}
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
             <motion.div
               animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -253,6 +282,34 @@ function ProjectCard({
   );
 }
 
+function ImageLightbox({ src, onClose }: { src: string; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-5 right-6 text-white/50 hover:text-white text-2xl z-10 transition-colors"
+      >
+        ✕
+      </button>
+      <motion.img
+        initial={{ scale: 0.92, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        src={src}
+        alt="Manual de marca"
+        className="max-w-full max-h-[90vh] object-contain rounded-lg"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </motion.div>
+  );
+}
+
 function ProjectModal({
   project,
   onClose,
@@ -260,9 +317,11 @@ function ProjectModal({
   project: ProjectData;
   onClose: () => void;
 }) {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const { t, locale } = useLanguage();
   const tp = t.projects;
   const desc = tp.items[project.key];
+  const isPdf = project.manual?.endsWith(".pdf");
 
   return (
     <AnimatePresence>
@@ -335,6 +394,58 @@ function ProjectModal({
               </>
             )}
 
+            {/* Manual de marca */}
+            {project.manual && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="mb-8"
+              >
+                <h4 className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-3">
+                  {tp.manualLabel}
+                </h4>
+                {isPdf ? (
+                  <>
+                    {/* PDF — iframe com navegação nativa (desktop) */}
+                    <div className="hidden md:block w-full rounded-lg overflow-hidden border border-offwhite/10" style={{ height: "520px" }}>
+                      <iframe
+                        src={project.manual}
+                        title={`${project.name} — Manual`}
+                        className="w-full h-full"
+                      />
+                    </div>
+                    {/* Mobile — link para abrir */}
+                    <a
+                      href={project.manual}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="md:hidden inline-flex items-center gap-2 px-5 py-3 bg-accent text-white text-sm font-medium rounded-lg"
+                    >
+                      {tp.openPdfBtn} →
+                    </a>
+                  </>
+                ) : (
+                  /* Imagem — clique para lightbox */
+                  <button
+                    onClick={() => setLightboxSrc(project.manual!)}
+                    className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none"
+                  >
+                    <img
+                      src={project.manual}
+                      alt={`${project.name} — Manual de marca`}
+                      className="w-full block transition-transform duration-500 group-hover/img:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                      <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide">
+                        {tp.expandBtn}
+                      </span>
+                    </div>
+                  </button>
+                )}
+              </motion.div>
+            )}
+
             {/* Badges */}
             <div className="flex flex-wrap gap-2 mb-8">
               {project.tags.map((tag) => (
@@ -373,6 +484,11 @@ function ProjectModal({
           </div>
         </motion.div>
       </motion.div>
+      <AnimatePresence>
+        {lightboxSrc && (
+          <ImageLightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
+        )}
+      </AnimatePresence>
     </AnimatePresence>
   );
 }
