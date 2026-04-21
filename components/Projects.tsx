@@ -152,9 +152,9 @@ function ProjectCard({
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className={`relative overflow-hidden group cursor-none rounded-xl ${
         featured
-          ? "col-span-1 md:col-span-2 aspect-[9/16] md:aspect-[21/9]"
+          ? "col-span-1 md:col-span-2 aspect-[9/16] md:aspect-[1903/909]"
           : project.image
-            ? "aspect-[9/16]" // desktop: altura definida pela imagem
+            ? "aspect-[9/16] md:aspect-[1903/909]"
             : "aspect-[9/16] md:aspect-[4/3]"
       }`}
       onClick={onClick}
@@ -164,32 +164,23 @@ function ProjectCard({
     >
       {project.image ? (
         <>
-          {/* Mobile: absoluta, alinhada pelo topo */}
+          {/* Mobile: alinhada pelo topo */}
           <img
             src={project.imageMobile ?? project.image}
             alt={project.name}
             className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
-
-          {/* Desktop featured: absoluta preenche aspect fixo */}
-          {featured && (
-            <img
-              src={project.image}
-              alt={project.name}
-              className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          )}
-
-          {/* Desktop não-featured: em fluxo, define altura do card */}
-          {!featured && (
-            <img
-              src={project.image}
-              alt={project.name}
-              className="hidden md:block w-full transition-transform duration-700 group-hover:scale-105"
-            />
-          )}
-
-          <div className="absolute inset-0 bg-gradient-to-t from-[#252525] via-[#252525]/55 to-[#252525]/15" />
+          {/* Desktop */}
+          <img
+            src={project.image}
+            alt={project.name}
+            className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          {/* Gradiente apenas no 1/3 inferior */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top, #252525 0%, rgba(37,37,37,0.75) 18%, rgba(37,37,37,0.2) 28%, transparent 33%)" }}
+          />
         </>
       ) : (
         <>
@@ -207,29 +198,23 @@ function ProjectCard({
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
 
-      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
-        {/* Topo — badge só no desktop, ano sempre */}
-        <div className="flex items-start justify-between">
-          <span className="hidden md:inline-flex text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
-            {project.type[locale]}
+      {/* Conteúdo — tudo na base */}
+      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+        <motion.div
+          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.3 }}
+          className="mb-2"
+        >
+          <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
+            {viewLabel}
           </span>
-          <span className="text-xs text-white/30 font-sans">{project.year}</span>
-        </div>
-
-        {/* Base — badge mobile + "ver projeto" + título */}
-        <div>
-          <motion.div
-            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.3 }}
-            className="hidden md:block mb-3"
-          >
-            <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
-              {viewLabel}
-            </span>
-          </motion.div>
-          <span className="md:hidden inline-flex mb-2 text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
-            {project.type[locale]}
-          </span>
+        </motion.div>
+        {/* Badge acima do título */}
+        <span className="inline-flex mb-2 text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full w-fit">
+          {project.type[locale]}
+        </span>
+        {/* Título + ano na mesma linha */}
+        <div className="flex items-end justify-between gap-4">
           <h3
             className={`font-display font-light text-white leading-tight ${
               featured ? "text-4xl md:text-6xl" : "text-2xl md:text-3xl"
@@ -237,6 +222,7 @@ function ProjectCard({
           >
             {project.name}
           </h3>
+          <span className="text-xs text-white/30 font-sans shrink-0 mb-1">{project.year}</span>
         </div>
       </div>
 
