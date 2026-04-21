@@ -282,30 +282,73 @@ function ProjectCard({
   );
 }
 
-function ImageLightbox({ src, onClose }: { src: string; onClose: () => void }) {
+function ImageLightbox({
+  src,
+  onClose,
+  pages,
+  page,
+  onPageChange,
+}: {
+  src: string;
+  onClose: () => void;
+  pages?: string[];
+  page?: number;
+  onPageChange?: (p: number) => void;
+}) {
+  const current = page ?? 0;
+  const total = pages?.length ?? 1;
+  const activeSrc = pages ? pages[current] : src;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 gap-4"
       onClick={onClose}
     >
       <button
         onClick={onClose}
-        className="absolute top-5 right-6 text-white/50 hover:text-white text-2xl z-10 transition-colors"
+        className="absolute top-5 right-6 text-white/50 hover:text-white text-2xl z-10 transition-colors cursor-none"
       >
         ✕
       </button>
+
       <motion.img
-        initial={{ scale: 0.92, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        src={src}
+        key={activeSrc}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        src={activeSrc}
         alt="Manual de marca"
-        className="max-w-full max-h-[90vh] object-contain rounded-lg"
+        className="max-w-full max-h-[80vh] object-contain rounded-lg"
         onClick={(e) => e.stopPropagation()}
       />
+
+      {pages && onPageChange && (
+        <div
+          className="flex items-center gap-4"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => onPageChange(Math.max(0, current - 1))}
+            disabled={current === 0}
+            className="text-sm font-sans px-4 py-2 rounded border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
+          >
+            ← anterior
+          </button>
+          <span className="text-sm text-white/40 font-sans min-w-[60px] text-center">
+            {current + 1} / {total}
+          </span>
+          <button
+            onClick={() => onPageChange(Math.min(total - 1, current + 1))}
+            disabled={current === total - 1}
+            className="text-sm font-sans px-4 py-2 rounded border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
+          >
+            próxima →
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -318,6 +361,7 @@ function ProjectModal({
   onClose: () => void;
 }) {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxIsCarousel, setLightboxIsCarousel] = useState(false);
   const [manualPage, setManualPage] = useState(0);
   const { t, locale } = useLanguage();
   const tp = t.projects;
@@ -406,7 +450,7 @@ function ProjectModal({
                   {tp.manualLabel}
                 </h4>
                 <button
-                  onClick={() => setLightboxSrc(project.manualPages![manualPage])}
+                  onClick={() => { setLightboxSrc(project.manualPages![manualPage]); setLightboxIsCarousel(true); }}
                   className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
                 >
                   <img
@@ -455,7 +499,7 @@ function ProjectModal({
                   {tp.manualLabel}
                 </h4>
                 <button
-                  onClick={() => setLightboxSrc(project.manual!)}
+                  onClick={() => { setLightboxSrc(project.manual!); setLightboxIsCarousel(false); }}
                   className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
                 >
                   <img
@@ -512,7 +556,13 @@ function ProjectModal({
       </motion.div>
       <AnimatePresence>
         {lightboxSrc && (
-          <ImageLightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
+          <ImageLightbox
+            src={lightboxSrc}
+            onClose={() => { setLightboxSrc(null); setLightboxIsCarousel(false); }}
+            pages={lightboxIsCarousel ? project.manualPages : undefined}
+            page={lightboxIsCarousel ? manualPage : undefined}
+            onPageChange={lightboxIsCarousel ? (p) => setManualPage(p) : undefined}
+          />
         )}
       </AnimatePresence>
     </AnimatePresence>
