@@ -114,7 +114,8 @@ const brandingProjects = [
     year: 2026,
     url: "",
     featured: true,
-    image: "/capitalconsorcio.webp",
+    image: "/capitalconsorcio-desktop.webp",
+    imageMobile: "/capitalconsorcio.webp",
     manualPages: Array.from({ length: 14 }, (_, i) => `/capitalconsorcio-manual/p${String(i + 1).padStart(2, "0")}.jpg`),
     tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
   },
@@ -415,7 +416,7 @@ function ProjectModal({
           exit={{ y: 60, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-nearblack border border-offwhite/10 w-full max-w-2xl md:max-w-3xl max-h-[85vh] overflow-y-auto relative rounded-xl"
+          className="bg-nearblack border border-offwhite/10 w-full max-w-2xl md:max-w-5xl max-h-[85vh] overflow-y-auto relative rounded-xl"
         >
           <button
             onClick={onClose}
