@@ -163,12 +163,12 @@ function ProjectCard({
       {/* Fundo: imagem ou cor sólida */}
       {project.image ? (
         <>
-          {/* Mobile cover */}
+          {/* Mobile cover — alinhado pelo topo */}
           {project.imageMobile && (
             <img
               src={project.imageMobile}
               alt={project.name}
-              className="md:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           )}
           {/* Desktop cover */}
@@ -195,23 +195,29 @@ function ProjectCard({
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
 
       <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+        {/* Topo — badge só no desktop, ano sempre */}
         <div className="flex items-start justify-between">
-          {/* Badge de tipo — mesmo visual dos bullets do About */}
-          <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+          <span className="hidden md:inline-flex text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
             {project.type[locale]}
           </span>
           <span className="text-xs text-white/30 font-sans">{project.year}</span>
         </div>
+
+        {/* Base — badge mobile + "ver projeto" + título */}
         <div>
           <motion.div
             animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.3 }}
-            className="mb-3"
+            className="hidden md:block mb-3"
           >
             <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
               {viewLabel}
             </span>
           </motion.div>
+          {/* Badge mobile — logo acima do título */}
+          <span className="md:hidden inline-flex mb-2 text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+            {project.type[locale]}
+          </span>
           <h3
             className={`font-display font-light text-white leading-tight ${
               featured ? "text-4xl md:text-6xl" : "text-2xl md:text-3xl"
