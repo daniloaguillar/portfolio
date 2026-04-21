@@ -8,7 +8,7 @@ export const translations = {
       contact: "Contato",
     },
     hero: {
-      tag: "Designer UI/UX & Identidade Visual",
+      tag: "Branding & UI/UX Designer",
       line1: "Design que",
       line2: "resolve.",
       line3: "Sites que ficam",
@@ -113,7 +113,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      tag: "UI/UX Designer & Visual Identity",
+      tag: "Branding & UI/UX Designer",
       line1: "Design that",
       line2: "delivers.",
       line3: "Sites that stay",
@@ -218,7 +218,7 @@ export const translations = {
       contact: "Contacto",
     },
     hero: {
-      tag: "Diseñador UI/UX & Identidad Visual",
+      tag: "Branding & UI/UX Designer",
       line1: "Diseño que",
       line2: "resuelve.",
       line3: "Sitios que quedan",
