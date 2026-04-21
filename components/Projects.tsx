@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 
@@ -298,13 +298,14 @@ function ImageLightbox({
   const current = page ?? 0;
   const total = pages?.length ?? 1;
   const activeSrc = pages ? pages[current] : src;
+  const isCarousel = !!(pages && onPageChange);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 gap-4"
+      className="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4"
       onClick={onClose}
     >
       <button
@@ -314,39 +315,51 @@ function ImageLightbox({
         ✕
       </button>
 
-      <motion.img
-        key={activeSrc}
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        src={activeSrc}
-        alt="Manual de marca"
-        className="max-w-full max-h-[80vh] object-contain rounded-lg"
+      {/* Área da imagem com setas laterais */}
+      <div
+        className="relative flex items-center justify-center w-full"
+        style={{ maxHeight: isCarousel ? "calc(100vh - 80px)" : "calc(100vh - 32px)" }}
         onClick={(e) => e.stopPropagation()}
-      />
+      >
+        {isCarousel && (
+          <button
+            onClick={() => onPageChange!(Math.max(0, current - 1))}
+            disabled={current === 0}
+            className="absolute left-0 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
+          >
+            ←
+          </button>
+        )}
 
-      {pages && onPageChange && (
+        <motion.img
+          key={activeSrc}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.12 }}
+          src={activeSrc}
+          alt="Manual de marca"
+          className="max-w-full object-contain rounded-lg"
+          style={{ maxHeight: isCarousel ? "calc(100vh - 80px)" : "calc(100vh - 32px)", paddingLeft: isCarousel ? "56px" : "0", paddingRight: isCarousel ? "56px" : "0" }}
+        />
+
+        {isCarousel && (
+          <button
+            onClick={() => onPageChange!(Math.min(total - 1, current + 1))}
+            disabled={current === total - 1}
+            className="absolute right-0 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
+          >
+            →
+          </button>
+        )}
+      </div>
+
+      {/* Contador de páginas */}
+      {isCarousel && (
         <div
-          className="flex items-center gap-4"
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-sm text-white/40 font-sans"
           onClick={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={() => onPageChange(Math.max(0, current - 1))}
-            disabled={current === 0}
-            className="text-sm font-sans px-4 py-2 rounded border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
-          >
-            ← anterior
-          </button>
-          <span className="text-sm text-white/40 font-sans min-w-[60px] text-center">
-            {current + 1} / {total}
-          </span>
-          <button
-            onClick={() => onPageChange(Math.min(total - 1, current + 1))}
-            disabled={current === total - 1}
-            className="text-sm font-sans px-4 py-2 rounded border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
-          >
-            próxima →
-          </button>
+          {current + 1} / {total}
         </div>
       )}
     </motion.div>
@@ -364,6 +377,16 @@ function ProjectModal({
   const [lightboxIsCarousel, setLightboxIsCarousel] = useState(false);
   const [manualPage, setManualPage] = useState(0);
   const { t, locale } = useLanguage();
+
+  // Pré-carrega todas as páginas do manual para eliminar delay de navegação
+  useEffect(() => {
+    if (project.manualPages) {
+      project.manualPages.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [project.manualPages]);
   const tp = t.projects;
   const desc = tp.items[project.key];
 
@@ -453,13 +476,17 @@ function ProjectModal({
                   onClick={() => { setLightboxSrc(project.manualPages![manualPage]); setLightboxIsCarousel(true); }}
                   className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
                 >
-                  <img
+                  <motion.img
+                    key={project.manualPages[manualPage]}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.12 }}
                     src={project.manualPages[manualPage]}
                     alt={`${project.name} — Manual p.${manualPage + 1}`}
-                    className="w-full block transition-transform duration-500 group-hover/img:scale-[1.02]"
+                    className="w-full block"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                    <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide">
+                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/60 transition-colors duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide border border-white/40">
                       {tp.expandBtn}
                     </span>
                   </div>
