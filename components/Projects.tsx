@@ -15,6 +15,7 @@ const siteProjects = [
     featured: true,
     image: "/juliana-goes.webp",
     siteImage: "/juliana-goes-full.webp",
+    siteImageMobile: "/juliana-goes-full-mobile.webp",
     tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
   },
   {
@@ -102,7 +103,7 @@ const brandingProjects = [
   },
 ];
 
-type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; siteImage?: string };
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; siteImage?: string; siteImageMobile?: string };
 
 function ProjectCard({
   project,
@@ -243,18 +244,26 @@ function ProjectModal({
 
             {/* Preview do site com scroll automático */}
             {project.siteImage && (
-              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
-                <img
-                  src={project.siteImage}
-                  alt={`${project.name} — site completo`}
-                  className="w-full"
-                  style={{
-                    animation: "site-scroll 8s ease-in-out infinite alternate",
-                    willChange: "transform",
-                    display: "block",
-                  }}
-                />
-              </div>
+              <>
+                {/* Desktop */}
+                <div className="hidden md:block relative w-full h-80 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                  <img
+                    src={project.siteImage}
+                    alt={`${project.name} — site completo`}
+                    className="w-full site-scroll-anim"
+                    style={{ display: "block", willChange: "transform" }}
+                  />
+                </div>
+                {/* Mobile */}
+                <div className="block md:hidden relative w-full h-64 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                  <img
+                    src={project.siteImageMobile ?? project.siteImage}
+                    alt={`${project.name} — site mobile`}
+                    className="w-full site-scroll-anim"
+                    style={{ display: "block", willChange: "transform" }}
+                  />
+                </div>
+              </>
             )}
 
             {/* Badges */}
