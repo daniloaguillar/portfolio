@@ -71,5 +71,5 @@ a, button, [role="button"] {
 }
 
 .site-scroll-anim {
-  animation: site-scroll 10s ease-in-out 1.5s infinite alternate;
+  animation: site-scroll 10s ease-in-out 0.5s infinite alternate;
 }

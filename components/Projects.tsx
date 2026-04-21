@@ -14,6 +14,7 @@ const siteProjects = [
     url: "https://www.julianagoes.com.br",
     featured: true,
     image: "/juliana-goes.webp",
+    imageMobile: "/juliana-goes-mobile.webp",
     siteImage: "/juliana-goes-full.webp",
     siteImageMobile: "/juliana-goes-full-mobile.webp",
     tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
@@ -103,7 +104,7 @@ const brandingProjects = [
   },
 ];
 
-type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; siteImage?: string; siteImageMobile?: string };
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; imageMobile?: string; siteImage?: string; siteImageMobile?: string };
 
 function ProjectCard({
   project,
@@ -126,7 +127,9 @@ function ProjectCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className={`relative overflow-hidden group cursor-none rounded-xl ${
-        featured ? "col-span-2 aspect-[16/9] md:aspect-[21/9]" : "aspect-[4/3]"
+        featured
+          ? "col-span-1 md:col-span-2 aspect-[9/16] md:aspect-[21/9]"
+          : "aspect-[9/16] md:aspect-[4/3]"
       }`}
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
@@ -136,10 +139,19 @@ function ProjectCard({
       {/* Fundo: imagem ou cor sólida */}
       {project.image ? (
         <>
+          {/* Mobile cover */}
+          {project.imageMobile && (
+            <img
+              src={project.imageMobile}
+              alt={project.name}
+              className="md:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
+          {/* Desktop cover */}
           <img
             src={project.image}
             alt={project.name}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${project.imageMobile ? "hidden md:block" : ""}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#252525]/90 via-[#252525]/30 to-transparent" />
         </>
@@ -254,8 +266,8 @@ function ProjectModal({
                     style={{ display: "block", willChange: "transform" }}
                   />
                 </div>
-                {/* Mobile */}
-                <div className="block md:hidden relative w-full h-64 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                {/* Mobile — proporção 1080x1350 (4:5) */}
+                <div className="block md:hidden relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-8 border border-offwhite/10">
                   <img
                     src={project.siteImageMobile ?? project.siteImage}
                     alt={`${project.name} — site mobile`}
@@ -352,7 +364,7 @@ export default function Projects() {
             <SectionLabel label={t.projects.sectionSites} />
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-3 md:gap-4 mb-20 md:mb-28">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-20 md:mb-28">
             <ProjectCard
               project={featured}
               featured
