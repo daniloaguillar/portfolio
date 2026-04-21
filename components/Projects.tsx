@@ -113,7 +113,7 @@ const brandingProjects = [
     type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
     year: 2026,
     url: "",
-    featured: false,
+    featured: true,
     image: "/capitalconsorcio.webp",
     manualPages: Array.from({ length: 14 }, (_, i) => `/capitalconsorcio-manual/p${String(i + 1).padStart(2, "0")}.jpg`),
     tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
@@ -151,9 +151,11 @@ function ProjectCard({
   featured,
   onClick,
   viewLabel,
+  isBranding,
 }: {
   project: ProjectData;
   featured: boolean;
+  isBranding?: boolean;
   onClick: () => void;
   viewLabel: string;
 }) {
@@ -178,7 +180,9 @@ function ProjectCard({
         <>
           {/* Imagem sem gradiente */}
           <div className={`relative overflow-hidden rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.13)] ${
-            featured ? "aspect-[9/16] md:aspect-[1903/909]" : "aspect-[9/16] md:aspect-[1903/909]"
+            isBranding
+              ? featured ? "aspect-square md:aspect-[1903/909]" : "aspect-square md:aspect-[15/11]"
+              : "aspect-[9/16] md:aspect-[1903/909]"
           }`}>
             <img
               src={project.imageMobile ?? project.image}
@@ -411,7 +415,7 @@ function ProjectModal({
           exit={{ y: 60, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-nearblack border border-offwhite/10 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative rounded-xl"
+          className="bg-nearblack border border-offwhite/10 w-full max-w-2xl md:max-w-3xl max-h-[85vh] overflow-y-auto relative rounded-xl"
         >
           <button
             onClick={onClose}
@@ -680,7 +684,8 @@ export default function Projects() {
               <ProjectCard
                 key={p.id}
                 project={p}
-                featured={false}
+                featured={p.featured}
+                isBranding
                 onClick={() => setActiveProject(p)}
                 viewLabel={t.projects.view}
               />
