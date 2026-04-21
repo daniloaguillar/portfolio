@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #F5F5F0;
+  --accent: #e86869;
+  --offwhite: #252525;
+  --grid-line: #252525;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F5F5F0;
+  color: #252525;
+  font-family: 'Host Grotesk', system-ui, sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F5F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #e86869;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: #e86869;
+  color: #F5F5F0;
+}
+
+/* Hover states for interactive elements */
+a, button, [role="button"] {
+  cursor: none;
+}
+
+/* Section divider line */
+.line-accent {
+  width: 40px;
+  height: 2px;
+  background-color: #e86869;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* Texto watermark grande (seção Contact) */
+.watermark-text {
+  color: rgba(37, 37, 37, 0.06);
+}

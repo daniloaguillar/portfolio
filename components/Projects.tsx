@@ -1,0 +1,363 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/lib/LanguageContext";
+
+const siteProjects = [
+  {
+    id: 1,
+    key: "juliana" as const,
+    name: "Juliana Goes",
+    type: { pt: "Site institucional", en: "Institutional site", es: "Sitio institucional" },
+    year: 2026,
+    url: "https://www.julianagoes.com.br",
+    featured: true,
+    tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
+  },
+  {
+    id: 2,
+    key: "rm" as const,
+    name: "Agência RM Digital",
+    type: { pt: "Site institucional", en: "Institutional site", es: "Sitio institucional" },
+    year: 2026,
+    url: "https://www.agenciarmdigital.com.br",
+    featured: false,
+    tags: ["UI/UX Design", "Branding digital", "Conversão", "Webflow"],
+  },
+  {
+    id: 3,
+    key: "ediane" as const,
+    name: "Curso Trauma e Regulação",
+    type: { pt: "Landing Page", en: "Landing Page", es: "Landing Page" },
+    year: 2026,
+    url: "https://www.agenciarmdigital.com.br/case-de-sucesso---ediane-ribeiro",
+    featured: false,
+    tags: ["Landing Page", "Identidade visual", "Conversão", "Webflow"],
+  },
+  {
+    id: 4,
+    key: "maison" as const,
+    name: "Maison Aura Beauty",
+    type: { pt: "Landing Page", en: "Landing Page", es: "Landing Page" },
+    year: 2025,
+    url: "https://www.maisonaurabeauty.com.br",
+    featured: false,
+    tags: ["Landing Page", "Design elegante", "Conversão", "Webflow"],
+  },
+  {
+    id: 5,
+    key: "fagulha" as const,
+    name: "Estúdio Fagulha",
+    type: { pt: "Site institucional", en: "Institutional site", es: "Sitio institucional" },
+    year: 2024,
+    url: "https://estudiofagulha.com.br",
+    featured: false,
+    tags: ["UI/UX Design", "Direção criativa", "Motion", "Webflow"],
+  },
+  {
+    id: 6,
+    key: "convi" as const,
+    name: "Convi Foods",
+    type: { pt: "Landing Page", en: "Landing Page", es: "Landing Page" },
+    year: 2024,
+    url: "https://convi-foods---landing-page.webflow.io",
+    featured: false,
+    tags: ["Landing Page", "Copywriting visual", "Alta conversão", "Webflow"],
+  },
+  {
+    id: 7,
+    key: "aprovo" as const,
+    name: "Aprovo Projetos",
+    type: { pt: "Site institucional", en: "Institutional site", es: "Sitio institucional" },
+    year: 2025,
+    url: "https://www.aprovoprojetos.com.br",
+    featured: false,
+    tags: ["UI/UX Design", "Arquitetura da informação", "Geração de leads", "Webflow"],
+  },
+];
+
+const brandingProjects = [
+  {
+    id: 8,
+    key: "capitalconsorcio" as const,
+    name: "Capital Consórcio",
+    type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
+    year: 2026,
+    url: "",
+    featured: false,
+    tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
+  },
+  {
+    id: 9,
+    key: "traumaid" as const,
+    name: "Curso Trauma e Regulação",
+    type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
+    year: 2026,
+    url: "",
+    featured: false,
+    tags: ["Logo", "Identidade cromática", "Aplicações digitais", "Manual de marca"],
+  },
+];
+
+type ProjectData = typeof siteProjects[0] | typeof brandingProjects[0];
+
+function ProjectCard({
+  project,
+  featured,
+  onClick,
+  viewLabel,
+}: {
+  project: ProjectData;
+  featured: boolean;
+  onClick: () => void;
+  viewLabel: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const { locale } = useLanguage();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className={`relative overflow-hidden group cursor-none rounded-xl ${
+        featured ? "col-span-2 aspect-[16/9] md:aspect-[21/9]" : "aspect-[4/3]"
+      }`}
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      data-hoverable
+    >
+      {/* Fundo preto fixo */}
+      <div className="absolute inset-0 bg-[#252525]" />
+      {/* Grid offwhite */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `linear-gradient(#F5F5F0 1px, transparent 1px), linear-gradient(90deg, #F5F5F0 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Hover overlay sutil */}
+      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+
+      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+        <div className="flex items-start justify-between">
+          {/* Badge de tipo — mesmo visual dos bullets do About */}
+          <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+            {project.type[locale]}
+          </span>
+          <span className="text-xs text-white/30 font-sans">{project.year}</span>
+        </div>
+        <div>
+          <motion.div
+            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.3 }}
+            className="mb-3"
+          >
+            <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
+              {viewLabel}
+            </span>
+          </motion.div>
+          <h3
+            className={`font-display font-light text-white leading-tight ${
+              featured ? "text-4xl md:text-6xl" : "text-2xl md:text-3xl"
+            }`}
+          >
+            {project.name}
+          </h3>
+        </div>
+      </div>
+
+      <motion.div
+        animate={hovered ? { opacity: 1 } : { opacity: 0 }}
+        className="absolute inset-0 border border-accent/30 pointer-events-none rounded-xl"
+      />
+    </motion.div>
+  );
+}
+
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: ProjectData;
+  onClose: () => void;
+}) {
+  const { t, locale } = useLanguage();
+  const tp = t.projects;
+  const desc = tp.items[project.key];
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-end md:items-center justify-center p-4 md:p-8"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 60, opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          onClick={(e) => e.stopPropagation()}
+          className="bg-nearblack border border-offwhite/10 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative rounded-xl"
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 text-offwhite/40 hover:text-offwhite transition-colors text-xl z-10"
+          >
+            ✕
+          </button>
+          <div className="h-1 w-full bg-accent rounded-t-xl" />
+          <div className="p-8 md:p-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+                {project.type[locale]}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-offwhite/20" />
+              <span className="text-xs text-offwhite/40 font-sans">{project.year}</span>
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl font-light text-offwhite mb-8 leading-tight">
+              {project.name}
+            </h2>
+            <div className="w-12 h-px bg-accent mb-6" />
+
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs px-3 py-1.5 border border-accent/40 text-accent font-sans tracking-wide rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-3">
+                {tp.aboutLabel}
+              </h4>
+              <p className="text-offwhite/70 font-sans leading-relaxed">{desc.description}</p>
+            </div>
+            <div className="mb-10">
+              <h4 className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-3">
+                {tp.deliveredLabel}
+              </h4>
+              <p className="text-offwhite/70 font-sans leading-relaxed">{desc.deliverables}</p>
+            </div>
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-accent text-white text-sm font-medium hover:bg-offwhite hover:text-black transition-colors duration-300 rounded-lg"
+              >
+                {tp.visitBtn}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="mb-12 md:mb-16">
+      <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-widest uppercase rounded-full">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default function Projects() {
+  const [activeProject, setActiveProject] = useState<ProjectData | null>(null);
+  const { t } = useLanguage();
+  const featured = siteProjects[0];
+  const restSites = siteProjects.slice(1);
+
+  return (
+    <>
+      <section id="projetos" className="py-24 md:py-36 bg-black">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Título principal */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-24"
+          >
+            <span className="line-accent" />
+            <h2 className="font-display text-5xl md:text-7xl font-light text-offwhite leading-tight">
+              {t.projects.sectionTitle}
+            </h2>
+          </motion.div>
+
+          {/* ── Sites & Landing Pages ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel label={t.projects.sectionSites} />
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-3 md:gap-4 mb-20 md:mb-28">
+            <ProjectCard
+              project={featured}
+              featured
+              onClick={() => setActiveProject(featured)}
+              viewLabel={t.projects.view}
+            />
+            {restSites.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                featured={false}
+                onClick={() => setActiveProject(p)}
+                viewLabel={t.projects.view}
+              />
+            ))}
+          </div>
+
+          {/* ── Identidade Visual ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel label={t.projects.sectionBranding} />
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
+            {brandingProjects.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                featured={false}
+                onClick={() => setActiveProject(p)}
+                viewLabel={t.projects.view}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+      )}
+    </>
+  );
+}

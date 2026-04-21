@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find 'C:\\\\Users\\\\odani\\\\OneDrive\\\\Área de Trabalho\\\\Danilo Aguillar - Portfolio\\\\portfolio' -type f -name package.json -o -name tailwind.config.* -o -name next.config.* -o -name vite.config.* -o -name tsconfig.json -o -name .babelrc*)",
+      "Bash(find 'C:\\\\Users\\\\odani\\\\OneDrive\\\\Área de Trabalho\\\\Danilo Aguillar - Portfolio\\\\portfolio/app' -type f -name *.css -o -name *.tsx -o -name *.ts)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(netstat -ano)",
+      "Bash(tasklist /FI \"PID eq 26968\")",
+      "Bash(tasklist /FI \"PID eq 24908\")",
+      "Bash(tasklist)",
+      "Bash(taskkill /F /PID 26968 /PID 24908)",
+      "Bash(taskkill //F //PID 26968)",
+      "Bash(taskkill //F //PID 24908)",
+      "Bash(taskkill //F //PID 8040)",
+      "Bash(taskkill //F //PID 28876 //PID 27248)",
+      "Bash(npx tsc:*)",
+      "Bash(git -C \"C:/Users/odani/OneDrive/Área de Trabalho/BACKUP DESKTOP/Danilo Aguillar - Portfolio/portfolio\" status)",
+      "Bash(git config *)",
+      "Bash(gh auth *)",
+      "Bash(vercel whoami *)",
+      "PowerShell(git config *)",
+      "PowerShell(npm list *)",
+      "PowerShell(npm install *)",
+      "PowerShell(winget install *)",
+      "PowerShell(gh *)",
+      "PowerShell(gh auth *)",
+      "PowerShell(git *)"
+    ]
+  }
+}
