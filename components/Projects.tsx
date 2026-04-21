@@ -166,7 +166,7 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`group cursor-none rounded-xl overflow-hidden ${
+      className={`group cursor-none rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)] ${
         featured ? "col-span-1 md:col-span-2" : ""
       }`}
       onClick={onClick}
@@ -194,16 +194,16 @@ function ProjectCard({
           </div>
 
           {/* Caption */}
-          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
+          <div className="bg-[#F5F5F0] border-t-2 border-accent border-x border-b border-x-[#252525]/12 border-b-[#252525]/12 px-5 py-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
               </span>
-              <span className="text-xs text-white/30 font-sans">{project.year}</span>
+              <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
             </div>
             <div className="flex items-center justify-between gap-4">
               <h3
-                className={`font-display font-light text-white leading-tight ${
+                className={`font-display font-light text-[#252525] leading-tight ${
                   featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
                 }`}
               >
@@ -256,15 +256,15 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Caption */}
-          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
+          <div className="bg-[#F5F5F0] border-t-2 border-accent border-x border-b border-x-[#252525]/12 border-b-[#252525]/12 px-5 py-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
               </span>
-              <span className="text-xs text-white/30 font-sans">{project.year}</span>
+              <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
             </div>
             <div className="flex items-center justify-between gap-4">
-              <h3 className="text-xl md:text-2xl font-display font-light text-white leading-tight">
+              <h3 className="text-xl md:text-2xl font-display font-light text-[#252525] leading-tight">
                 {project.name}
               </h3>
               <motion.span
