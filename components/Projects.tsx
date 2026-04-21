@@ -166,7 +166,7 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`group cursor-none rounded-xl overflow-hidden bg-[#F5F5F0] border-x border-b border-accent shadow-[0_4px_24px_rgba(0,0,0,0.10)] ${
+      className={`group cursor-none rounded-xl bg-[#F5F5F0] shadow-[0_4px_24px_rgba(0,0,0,0.10)] ${
         featured ? "col-span-1 md:col-span-2" : ""
       }`}
       onClick={onClick}
@@ -177,7 +177,7 @@ function ProjectCard({
       {project.image ? (
         <>
           {/* Imagem sem gradiente */}
-          <div className={`relative overflow-hidden ${
+          <div className={`relative overflow-hidden rounded-t-xl ${
             featured ? "aspect-[9/16] md:aspect-[1903/909]" : "aspect-[9/16] md:aspect-[1903/909]"
           }`}>
             <img
@@ -194,7 +194,7 @@ function ProjectCard({
           </div>
 
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] px-5 py-4 pb-5">
+          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-accent rounded-b-xl px-5 py-4 pb-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -222,7 +222,7 @@ function ProjectCard({
       ) : (
         /* Identidade Visual: capa + caption */
         <>
-          <div className="relative overflow-hidden aspect-square md:aspect-[15/11]">
+          <div className="relative overflow-hidden rounded-t-xl aspect-square md:aspect-[15/11]">
             {project.image ? (
               <>
                 <img
@@ -256,7 +256,7 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] px-5 py-4 pb-5">
+          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-accent rounded-b-xl px-5 py-4 pb-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
