@@ -195,7 +195,7 @@ function ProjectCard({
 
           {/* Caption */}
           <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
-            <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -258,7 +258,7 @@ function ProjectCard({
           </div>
           {/* Caption */}
           <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
-            <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
+            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -317,17 +317,17 @@ function ImageLightbox({
         ✕
       </button>
 
-      {/* Área da imagem com setas laterais */}
+      {/* Área da imagem — sem w-full para que cliques no backdrop fechem o lightbox */}
       <div
-        className="relative flex items-center justify-center w-full"
-        style={{ maxHeight: isCarousel ? "calc(100vh - 80px)" : "calc(100vh - 32px)" }}
+        className="relative flex items-center justify-center"
+        style={{ maxHeight: isCarousel ? "calc(100vh - 120px)" : "calc(100vh - 32px)" }}
         onClick={(e) => e.stopPropagation()}
       >
         {isCarousel && (
           <button
             onClick={() => onPageChange!(Math.max(0, current - 1))}
             disabled={current === 0}
-            className="absolute left-0 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
           >
             ←
           </button>
@@ -341,24 +341,28 @@ function ImageLightbox({
           src={activeSrc}
           alt="Manual de marca"
           className="max-w-full object-contain rounded-lg"
-          style={{ maxHeight: isCarousel ? "calc(100vh - 80px)" : "calc(100vh - 32px)", paddingLeft: isCarousel ? "56px" : "0", paddingRight: isCarousel ? "56px" : "0" }}
+          style={{
+            maxHeight: isCarousel ? "calc(100vh - 120px)" : "calc(100vh - 32px)",
+            paddingLeft: isCarousel ? "56px" : "0",
+            paddingRight: isCarousel ? "56px" : "0",
+          }}
         />
 
         {isCarousel && (
           <button
             onClick={() => onPageChange!(Math.min(total - 1, current + 1))}
             disabled={current === total - 1}
-            className="absolute right-0 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/60 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none bg-black/40 shrink-0"
           >
             →
           </button>
         )}
       </div>
 
-      {/* Contador de páginas */}
+      {/* Contador abaixo da imagem */}
       {isCarousel && (
         <div
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-sm text-white/40 font-sans"
+          className="mt-4 text-sm text-white/40 font-sans"
           onClick={(e) => e.stopPropagation()}
         >
           {current + 1} / {total}
