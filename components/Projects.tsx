@@ -115,7 +115,7 @@ const brandingProjects = [
     url: "",
     featured: false,
     image: "/capitalconsorcio.webp",
-    manual: "/capitalconsorcio-manual.pdf",
+    manualPages: Array.from({ length: 14 }, (_, i) => `/capitalconsorcio-manual/p${String(i + 1).padStart(2, "0")}.jpg`),
     tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
   },
   {
@@ -144,7 +144,7 @@ const brandingProjects = [
   },
 ];
 
-type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; imageMobile?: string; siteImage?: string; siteImageMobile?: string; manual?: string };
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; imageMobile?: string; siteImage?: string; siteImageMobile?: string; manual?: string; manualPages?: string[] };
 
 function ProjectCard({
   project,
@@ -318,10 +318,10 @@ function ProjectModal({
   onClose: () => void;
 }) {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [manualPage, setManualPage] = useState(0);
   const { t, locale } = useLanguage();
   const tp = t.projects;
   const desc = tp.items[project.key];
-  const isPdf = project.manual?.endsWith(".pdf");
 
   return (
     <AnimatePresence>
@@ -394,8 +394,8 @@ function ProjectModal({
               </>
             )}
 
-            {/* Manual de marca */}
-            {project.manual && (
+            {/* Manual de marca — carrossel de imagens */}
+            {project.manualPages && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -405,44 +405,70 @@ function ProjectModal({
                 <h4 className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-3">
                   {tp.manualLabel}
                 </h4>
-                {isPdf ? (
-                  <>
-                    {/* PDF — iframe com navegação nativa (desktop) */}
-                    <div className="hidden md:block w-full rounded-lg overflow-hidden border border-offwhite/10" style={{ height: "520px" }}>
-                      <iframe
-                        src={project.manual}
-                        title={`${project.name} — Manual`}
-                        className="w-full h-full"
-                      />
-                    </div>
-                    {/* Mobile — link para abrir */}
-                    <a
-                      href={project.manual}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="md:hidden inline-flex items-center gap-2 px-5 py-3 bg-accent text-white text-sm font-medium rounded-lg"
-                    >
-                      {tp.openPdfBtn} →
-                    </a>
-                  </>
-                ) : (
-                  /* Imagem — clique para lightbox */
+                <button
+                  onClick={() => setLightboxSrc(project.manualPages![manualPage])}
+                  className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
+                >
+                  <img
+                    src={project.manualPages[manualPage]}
+                    alt={`${project.name} — Manual p.${manualPage + 1}`}
+                    className="w-full block transition-transform duration-500 group-hover/img:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide">
+                      {tp.expandBtn}
+                    </span>
+                  </div>
+                </button>
+                {/* Navegação entre páginas */}
+                <div className="flex items-center justify-between mt-3 px-1">
                   <button
-                    onClick={() => setLightboxSrc(project.manual!)}
-                    className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none"
+                    onClick={() => setManualPage((p) => Math.max(0, p - 1))}
+                    disabled={manualPage === 0}
+                    className="text-xs font-sans px-3 py-1.5 rounded border border-offwhite/20 text-offwhite/50 hover:text-offwhite hover:border-offwhite/50 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
                   >
-                    <img
-                      src={project.manual}
-                      alt={`${project.name} — Manual de marca`}
-                      className="w-full block transition-transform duration-500 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                      <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide">
-                        {tp.expandBtn}
-                      </span>
-                    </div>
+                    ← anterior
                   </button>
-                )}
+                  <span className="text-xs text-offwhite/30 font-sans">
+                    {manualPage + 1} / {project.manualPages.length}
+                  </span>
+                  <button
+                    onClick={() => setManualPage((p) => Math.min(project.manualPages!.length - 1, p + 1))}
+                    disabled={manualPage === project.manualPages.length - 1}
+                    className="text-xs font-sans px-3 py-1.5 rounded border border-offwhite/20 text-offwhite/50 hover:text-offwhite hover:border-offwhite/50 disabled:opacity-20 disabled:cursor-not-allowed transition-colors cursor-none"
+                  >
+                    próxima →
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Manual de marca — imagem única */}
+            {project.manual && !project.manualPages && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="mb-8"
+              >
+                <h4 className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-3">
+                  {tp.manualLabel}
+                </h4>
+                <button
+                  onClick={() => setLightboxSrc(project.manual!)}
+                  className="relative group/img w-full rounded-lg overflow-hidden border border-offwhite/10 cursor-none block"
+                >
+                  <img
+                    src={project.manual}
+                    alt={`${project.name} — Manual de marca`}
+                    className="w-full block transition-transform duration-500 group-hover/img:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide">
+                      {tp.expandBtn}
+                    </span>
+                  </div>
+                </button>
               </motion.div>
             )}
 
