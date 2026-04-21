@@ -8,7 +8,7 @@ export default function CustomCursor() {
   const y = useMotionValue(-100);
   const springX = useSpring(x, { stiffness: 180, damping: 22 });
   const springY = useSpring(y, { stiffness: 180, damping: 22 });
-  const [onLight, setOnLight] = useState(false);
+  const [state, setState] = useState<"default" | "accent" | "light">("default");
 
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
@@ -18,7 +18,17 @@ export default function CustomCursor() {
 
     const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      setOnLight(!!target.closest("[data-cursor-light]"));
+      if (target.closest("[data-cursor-light]")) {
+        setState("light");
+      } else if (
+        target.closest("a") ||
+        target.closest("button") ||
+        target.closest("[data-hoverable]")
+      ) {
+        setState("accent");
+      } else {
+        setState("default");
+      }
     };
 
     window.addEventListener("mousemove", handleMove);
@@ -36,10 +46,12 @@ export default function CustomCursor() {
       <motion.div
         style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: onLight ? 8 : 14,
-          height: onLight ? 8 : 14,
-          backgroundColor: onLight ? "#F5F5F0" : "transparent",
-          borderColor: onLight ? "#F5F5F0" : "rgba(37,37,37,0.5)",
+          width: state === "default" ? 14 : 8,
+          height: state === "default" ? 14 : 8,
+          backgroundColor:
+            state === "light" ? "#F5F5F0" : state === "accent" ? "#e86869" : "transparent",
+          borderColor:
+            state === "light" ? "#F5F5F0" : state === "accent" ? "#e86869" : "rgba(37,37,37,0.5)",
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
         className="fixed top-0 left-0 border rounded-sm pointer-events-none z-[9999]"
