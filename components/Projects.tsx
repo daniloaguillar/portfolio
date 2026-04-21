@@ -194,7 +194,7 @@ function ProjectCard({
           </div>
 
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-accent rounded-b-xl px-5 py-4 pb-5">
+          <div className="mt-1 bg-[#F5F5F0] border border-accent rounded-xl px-5 py-4 pb-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -256,7 +256,7 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-accent rounded-b-xl px-5 py-4 pb-5">
+          <div className="mt-1 bg-[#F5F5F0] border border-accent rounded-xl px-5 py-4 pb-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
