@@ -63,3 +63,9 @@ a, button, [role="button"] {
 .watermark-text {
   color: rgba(37, 37, 37, 0.06);
 }
+
+/* Scroll automático da preview do site no modal */
+@keyframes site-scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(calc(-100% + 320px)); }
+}

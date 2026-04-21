@@ -14,6 +14,7 @@ const siteProjects = [
     url: "https://www.julianagoes.com.br",
     featured: true,
     image: "/juliana-goes.webp",
+    siteImage: "/juliana-goes-full.webp",
     tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
   },
   {
@@ -101,7 +102,7 @@ const brandingProjects = [
   },
 ];
 
-type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string };
+type ProjectData = (typeof siteProjects[0] | typeof brandingProjects[0]) & { image?: string; siteImage?: string };
 
 function ProjectCard({
   project,
@@ -139,7 +140,7 @@ function ProjectCard({
             alt={project.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#252525]/90 via-[#252525]/30 to-transparent" />
         </>
       ) : (
         <>
@@ -239,6 +240,22 @@ function ProjectModal({
               {project.name}
             </h2>
             <div className="w-12 h-px bg-accent mb-6" />
+
+            {/* Preview do site com scroll automático */}
+            {project.siteImage && (
+              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-8 border border-offwhite/10">
+                <img
+                  src={project.siteImage}
+                  alt={`${project.name} — site completo`}
+                  className="w-full"
+                  style={{
+                    animation: "site-scroll 8s ease-in-out infinite alternate",
+                    willChange: "transform",
+                    display: "block",
+                  }}
+                />
+              </div>
+            )}
 
             {/* Badges */}
             <div className="flex flex-wrap gap-2 mb-8">
