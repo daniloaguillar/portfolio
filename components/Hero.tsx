@@ -109,6 +109,7 @@ export default function Hero() {
 
           <button
             onClick={scrollToProjects}
+            data-cursor-light
             className="inline-flex items-center gap-4 px-8 py-4 bg-accent text-white text-sm font-medium tracking-wide rounded-lg"
           >
             <span>{t.hero.cta}</span>

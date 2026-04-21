@@ -46,6 +46,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            data-cursor-light
             className="inline-flex items-center gap-4 px-8 py-5 bg-accent text-white font-medium rounded-lg"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

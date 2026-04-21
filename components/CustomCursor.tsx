@@ -8,7 +8,7 @@ export default function CustomCursor() {
   const y = useMotionValue(-100);
   const springX = useSpring(x, { stiffness: 180, damping: 22 });
   const springY = useSpring(y, { stiffness: 180, damping: 22 });
-  const [onInteractive, setOnInteractive] = useState(false);
+  const [onLight, setOnLight] = useState(false);
 
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
@@ -18,12 +18,7 @@ export default function CustomCursor() {
 
     const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const interactive = !!(
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("[data-hoverable]")
-      );
-      setOnInteractive(interactive);
+      setOnLight(!!target.closest("[data-cursor-light]"));
     };
 
     window.addEventListener("mousemove", handleMove);
@@ -41,10 +36,10 @@ export default function CustomCursor() {
       <motion.div
         style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: onInteractive ? 8 : 14,
-          height: onInteractive ? 8 : 14,
-          backgroundColor: onInteractive ? "#F5F5F0" : "transparent",
-          borderColor: onInteractive ? "#F5F5F0" : "rgba(37,37,37,0.5)",
+          width: onLight ? 8 : 14,
+          height: onLight ? 8 : 14,
+          backgroundColor: onLight ? "#F5F5F0" : "transparent",
+          borderColor: onLight ? "#F5F5F0" : "rgba(37,37,37,0.5)",
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
         className="fixed top-0 left-0 border rounded-sm pointer-events-none z-[9999]"

@@ -194,7 +194,7 @@ function ProjectCard({
           </div>
 
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] border border-[#252525]/12 rounded-b-xl px-5 py-4">
+          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-[#252525]/12 rounded-b-xl px-5 py-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -256,7 +256,7 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Caption */}
-          <div className="mt-1 bg-[#F5F5F0] border border-[#252525]/12 rounded-b-xl px-5 py-4">
+          <div className="mt-1 bg-[#F5F5F0] border-x border-b border-[#252525]/12 rounded-b-xl px-5 py-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -572,6 +572,7 @@ function ProjectModal({
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cursor-light
                 className="group inline-flex items-center gap-3 px-6 py-3 bg-accent text-white text-sm font-medium hover:bg-offwhite hover:text-black transition-colors duration-300 rounded-lg"
               >
                 {tp.visitBtn}
