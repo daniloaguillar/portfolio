@@ -178,16 +178,16 @@ function ProjectCard({
           </div>
 
           {/* Caption abaixo da imagem */}
-          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
+          <div className="bg-accent border-t-2 border-[#252525] px-5 py-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
+              <span className="text-xs px-3 py-1 border border-[#252525]/40 text-[#252525] font-sans tracking-wide rounded-full">
                 {project.type[locale]}
               </span>
-              <span className="text-xs text-white/30 font-sans">{project.year}</span>
+              <span className="text-xs text-[#252525]/50 font-sans">{project.year}</span>
             </div>
             <div className="flex items-center justify-between gap-4">
               <h3
-                className={`font-display font-light text-white leading-tight ${
+                className={`font-display font-light text-[#252525] leading-tight ${
                   featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
                 }`}
               >
@@ -196,7 +196,7 @@ function ProjectCard({
               <motion.span
                 animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
                 transition={{ duration: 0.25 }}
-                className="text-accent text-sm font-sans shrink-0"
+                className="text-[#252525] text-sm font-sans shrink-0"
               >
                 →
               </motion.span>
