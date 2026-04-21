@@ -150,12 +150,8 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden group cursor-none rounded-xl ${
-        featured
-          ? "col-span-1 md:col-span-2 aspect-[9/16] md:aspect-[1903/909]"
-          : project.image
-            ? "aspect-[9/16] md:aspect-[1903/909]"
-            : "aspect-[9/16] md:aspect-[4/3]"
+      className={`group cursor-none rounded-xl overflow-hidden ${
+        featured ? "col-span-1 md:col-span-2" : ""
       }`}
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
@@ -164,26 +160,52 @@ function ProjectCard({
     >
       {project.image ? (
         <>
-          {/* Mobile: alinhada pelo topo */}
-          <img
-            src={project.imageMobile ?? project.image}
-            alt={project.name}
-            className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          />
-          {/* Desktop */}
-          <img
-            src={project.image}
-            alt={project.name}
-            className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          {/* Gradiente apenas no 1/3 inferior */}
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(to top, #252525 0%, rgba(37,37,37,0.75) 18%, rgba(37,37,37,0.2) 28%, transparent 33%)" }}
-          />
+          {/* Imagem sem gradiente */}
+          <div className={`relative overflow-hidden ${
+            featured ? "aspect-[9/16] md:aspect-[1903/909]" : "aspect-[9/16] md:aspect-[1903/909]"
+          }`}>
+            <img
+              src={project.imageMobile ?? project.image}
+              alt={project.name}
+              className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+            <img
+              src={project.image}
+              alt={project.name}
+              className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+          </div>
+
+          {/* Caption abaixo da imagem */}
+          <div className="bg-[#252525] border-t-2 border-accent px-5 py-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
+                {project.type[locale]}
+              </span>
+              <span className="text-xs text-white/30 font-sans">{project.year}</span>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <h3
+                className={`font-display font-light text-white leading-tight ${
+                  featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
+                }`}
+              >
+                {project.name}
+              </h3>
+              <motion.span
+                animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                transition={{ duration: 0.25 }}
+                className="text-accent text-sm font-sans shrink-0"
+              >
+                →
+              </motion.span>
+            </div>
+          </div>
         </>
       ) : (
-        <>
+        /* Branding: dark card com aspect fixo */
+        <div className={`relative overflow-hidden aspect-[9/16] md:aspect-[4/3]`}>
           <div className="absolute inset-0 bg-[#252525]" />
           <div
             className="absolute inset-0 opacity-[0.07]"
@@ -192,44 +214,35 @@ function ProjectCard({
               backgroundSize: "40px 40px",
             }}
           />
-        </>
-      )}
-
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
-
-      {/* Conteúdo — tudo na base */}
-      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-        <motion.div
-          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.3 }}
-          className="mb-2"
-        >
-          <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
-            {viewLabel}
-          </span>
-        </motion.div>
-        {/* Badge acima do título */}
-        <span className="inline-flex mb-2 text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full w-fit">
-          {project.type[locale]}
-        </span>
-        {/* Título + ano na mesma linha */}
-        <div className="flex items-end justify-between gap-4">
-          <h3
-            className={`font-display font-light text-white leading-tight ${
-              featured ? "text-4xl md:text-6xl" : "text-2xl md:text-3xl"
-            }`}
-          >
-            {project.name}
-          </h3>
-          <span className="text-xs text-white/30 font-sans shrink-0 mb-1">{project.year}</span>
+          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+          <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+            <div className="flex items-start justify-between">
+              <span className="text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
+                {project.type[locale]}
+              </span>
+              <span className="text-xs text-white/30 font-sans">{project.year}</span>
+            </div>
+            <div>
+              <motion.div
+                animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+                className="mb-3"
+              >
+                <span className="text-xs tracking-[0.2em] uppercase text-accent font-sans font-medium">
+                  {viewLabel}
+                </span>
+              </motion.div>
+              <h3 className="text-2xl md:text-3xl font-display font-light text-white leading-tight">
+                {project.name}
+              </h3>
+            </div>
+          </div>
+          <motion.div
+            animate={hovered ? { opacity: 1 } : { opacity: 0 }}
+            className="absolute inset-0 border border-accent/30 pointer-events-none rounded-xl"
+          />
         </div>
-      </div>
-
-      <motion.div
-        animate={hovered ? { opacity: 1 } : { opacity: 0 }}
-        className="absolute inset-0 border border-accent/30 pointer-events-none rounded-xl"
-      />
+      )}
     </motion.div>
   );
 }
