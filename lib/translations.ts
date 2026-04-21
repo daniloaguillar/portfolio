@@ -66,13 +66,13 @@ export const translations = {
           description:
             "Landing page de alta conversão para marca de alimentos. Estrutura pensada para guiar o usuário do interesse à ação em uma narrativa visual contínua.",
           deliverables:
-            "Copywriting visual, design de seções, animações e integração com formulário de contato.",
+            "Copywriting visual, design de seções e animações.",
         },
         ediane: {
           description:
             "Landing page para o Curso Trauma e Regulação da psicóloga Ediane Ribeiro. O projeto integrou a identidade visual criada exclusivamente para o curso com uma estrutura narrativa focada em conversão e transmissão de autoridade.",
           deliverables:
-            "Identidade visual do curso, design da landing page, copywriting visual e integração com plataforma de inscrição.",
+            "Identidade visual do curso, design da landing page e copywriting visual.",
         },
         capitalconsorcio: {
           description:
@@ -88,9 +88,9 @@ export const translations = {
         },
         continente: {
           description:
-            "Identidade visual para a Continente Experience, empresa de turismo e experiências. A marca foi desenvolvida para evocar aventura, sofisticação e a sensação de descoberta — posicionando a empresa como referência em experiências únicas.",
+            "Vivência presencial do programa de regulação emocional para ansiedade, conduzida pela psicóloga Ediane Ribeiro. Um dia de conexão com o próprio sentir — para reconhecer as emoções como bússola interna que conduz à saúde e a escolhas mais autênticas. Realizada no Rio de Janeiro, na Casa Savana (Rua Camerino, 162), em 30/05/2026, das 09h às 17h. Turma reduzida, vagas super limitadas.",
           deliverables:
-            "Criação de logo, paleta de cores, tipografia, aplicações digitais e manual de marca.",
+            "Criação de logo, identidade cromática, tipografia, aplicações digitais e manual de marca.",
         },
       },
     },
@@ -180,13 +180,13 @@ export const translations = {
           description:
             "High-conversion landing page for a food brand. Structure designed to guide the user from interest to action through a continuous visual narrative.",
           deliverables:
-            "Visual copywriting, section design, animations and contact form integration.",
+            "Visual copywriting, section design and animations.",
         },
         ediane: {
           description:
             "Landing page for the Curso Trauma e Regulação by psychologist Ediane Ribeiro. The project integrated the course's exclusive visual identity with a narrative structure focused on conversion and authority.",
           deliverables:
-            "Course visual identity, landing page design, visual copywriting and enrollment platform integration.",
+            "Course visual identity, landing page design and visual copywriting.",
         },
         capitalconsorcio: {
           description:
@@ -202,9 +202,9 @@ export const translations = {
         },
         continente: {
           description:
-            "Visual identity for Continente Experience, a tourism and experiences company. The brand was developed to evoke adventure, sophistication and the feeling of discovery — positioning the company as a reference in unique experiences.",
+            "In-person emotional regulation workshop for anxiety, led by psychologist Ediane Ribeiro. A day of connecting with your own emotions as an internal compass — for those who want to handle anxiety better and make more authentic choices. Held in Rio de Janeiro, at Casa Savana (Rua Camerino, 162), on 05/30/2026, from 9am to 5pm. Small group, very limited spots.",
           deliverables:
-            "Logo creation, color palette, typography, digital applications and brand manual.",
+            "Logo creation, chromatic identity, typography, digital applications and brand manual.",
         },
       },
     },
@@ -294,13 +294,13 @@ export const translations = {
           description:
             "Landing page de alta conversión para marca de alimentos. Estructura pensada para guiar al usuario del interés a la acción en una narrativa visual continua.",
           deliverables:
-            "Copywriting visual, diseño de secciones, animaciones e integración con formulario de contacto.",
+            "Copywriting visual, diseño de secciones y animaciones.",
         },
         ediane: {
           description:
             "Landing page para el Curso Trauma y Regulación de la psicóloga Ediane Ribeiro. El proyecto integró la identidad visual exclusiva del curso con una estructura narrativa orientada a la conversión y transmisión de autoridad.",
           deliverables:
-            "Identidad visual del curso, diseño de landing page, copywriting visual e integración con plataforma de inscripción.",
+            "Identidad visual del curso, diseño de landing page y copywriting visual.",
         },
         capitalconsorcio: {
           description:
@@ -316,9 +316,9 @@ export const translations = {
         },
         continente: {
           description:
-            "Identidad visual para Continente Experience, empresa de turismo y experiencias. La marca fue desarrollada para evocar aventura, sofisticación y la sensación de descubrimiento — posicionando a la empresa como referencia en experiencias únicas.",
+            "Vivencia presencial del programa de regulación emocional para ansiedad, conducida por la psicóloga Ediane Ribeiro. Un día de conexión con las propias emociones como brújula interna — para quienes quieren manejar mejor la ansiedad y tomar decisiones más auténticas. Realizada en Río de Janeiro, en la Casa Savana (Rua Camerino, 162), el 30/05/2026, de 09h a 17h. Grupo reducido, cupos muy limitados.",
           deliverables:
-            "Creación de logo, paleta de colores, tipografía, aplicaciones digitales y manual de marca.",
+            "Creación de logo, identidad cromática, tipografía, aplicaciones digitales y manual de marca.",
         },
       },
     },

@@ -17,7 +17,7 @@ const siteProjects = [
     imageMobile: "/juliana-goes-mobile.webp",
     siteImage: "/juliana-goes-full.webp",
     siteImageMobile: "/juliana-goes-full-mobile.webp",
-    tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital", "Webflow"],
+    tags: ["UI/UX Design", "Tipografia expressiva", "Identidade digital"],
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const siteProjects = [
     imageMobile: "/rm-digital-mobile.webp",
     siteImage: "/rm-digital-full.webp",
     siteImageMobile: "/rm-digital-full-mobile.webp",
-    tags: ["UI/UX Design", "Branding digital", "Conversão", "Webflow"],
+    tags: ["UI/UX Design", "Branding digital", "Conversão"],
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const siteProjects = [
     imageMobile: "/trauma-mobile.webp",
     siteImage: "/trauma-full.webp",
     siteImageMobile: "/trauma-full-mobile.webp",
-    tags: ["Landing Page", "Identidade visual", "Conversão", "Webflow"],
+    tags: ["Landing Page", "Identidade visual", "Conversão"],
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const siteProjects = [
     imageMobile: "/maison-mobile.webp",
     siteImage: "/maison-full.webp",
     siteImageMobile: "/maison-full-mobile.webp",
-    tags: ["Landing Page", "Design elegante", "Conversão", "Webflow"],
+    tags: ["Landing Page", "Design elegante", "Conversão"],
   },
   {
     id: 5,
@@ -73,7 +73,7 @@ const siteProjects = [
     imageMobile: "/fagulha-mobile.webp",
     siteImage: "/fagulha-full.webp",
     siteImageMobile: "/fagulha-full-mobile.webp",
-    tags: ["UI/UX Design", "Direção criativa", "Motion", "Webflow"],
+    tags: ["UI/UX Design", "Direção criativa", "Motion"],
   },
   {
     id: 6,
@@ -87,7 +87,7 @@ const siteProjects = [
     imageMobile: "/convi-mobile.webp",
     siteImage: "/convi-full.webp",
     siteImageMobile: "/convi-full-mobile.webp",
-    tags: ["Landing Page", "Copywriting visual", "Alta conversão", "Webflow"],
+    tags: ["Landing Page", "Copywriting visual", "Alta conversão"],
   },
   {
     id: 7,
@@ -101,7 +101,7 @@ const siteProjects = [
     imageMobile: "/aprovo-mobile.webp",
     siteImage: "/aprovo-full.webp",
     siteImageMobile: "/aprovo-full-mobile.webp",
-    tags: ["UI/UX Design", "Arquitetura da informação", "Geração de leads", "Webflow"],
+    tags: ["UI/UX Design", "Arquitetura da informação", "Geração de leads"],
   },
 ];
 
