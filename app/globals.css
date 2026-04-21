@@ -65,11 +65,20 @@ a, button, [role="button"] {
 }
 
 /* Scroll automático da preview do site no modal */
+@keyframes site-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @keyframes site-scroll {
   0%   { transform: translateY(0); }
   100% { transform: translateY(calc(-100% + 320px)); }
 }
 
 .site-scroll-anim {
-  animation: site-scroll 10s ease-in-out 0.5s infinite alternate;
+  animation:
+    site-fade-in 0.3s ease forwards,
+    site-scroll 10s ease-in-out 0.3s infinite alternate;
+  /* forwards: mantém opacity:1 após fade; backwards: aplica translateY(0) durante delay */
+  animation-fill-mode: forwards, backwards;
 }

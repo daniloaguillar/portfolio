@@ -153,30 +153,42 @@ function ProjectCard({
       className={`relative overflow-hidden group cursor-none rounded-xl ${
         featured
           ? "col-span-1 md:col-span-2 aspect-[9/16] md:aspect-[21/9]"
-          : "aspect-[9/16] md:aspect-[4/3]"
+          : project.image
+            ? "aspect-[9/16]" // desktop: altura definida pela imagem
+            : "aspect-[9/16] md:aspect-[4/3]"
       }`}
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       data-hoverable
     >
-      {/* Fundo: imagem ou cor sólida */}
       {project.image ? (
         <>
-          {/* Mobile cover — alinhado pelo topo */}
-          {project.imageMobile && (
+          {/* Mobile: absoluta, alinhada pelo topo */}
+          <img
+            src={project.imageMobile ?? project.image}
+            alt={project.name}
+            className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          />
+
+          {/* Desktop featured: absoluta preenche aspect fixo */}
+          {featured && (
             <img
-              src={project.imageMobile}
+              src={project.image}
               alt={project.name}
-              className="md:hidden absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           )}
-          {/* Desktop cover — object-contain para mostrar a capa completa */}
-          <img
-            src={project.image}
-            alt={project.name}
-            className={`absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 ${project.imageMobile ? "hidden md:block" : ""}`}
-          />
+
+          {/* Desktop não-featured: em fluxo, define altura do card */}
+          {!featured && (
+            <img
+              src={project.image}
+              alt={project.name}
+              className="hidden md:block w-full transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
+
           <div className="absolute inset-0 bg-gradient-to-t from-[#252525] via-[#252525]/55 to-[#252525]/15" />
         </>
       ) : (
@@ -191,7 +203,8 @@ function ProjectCard({
           />
         </>
       )}
-      {/* Hover overlay sutil */}
+
+      {/* Hover overlay */}
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
 
       <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
@@ -214,7 +227,6 @@ function ProjectCard({
               {viewLabel}
             </span>
           </motion.div>
-          {/* Badge mobile — logo acima do título */}
           <span className="md:hidden inline-flex mb-2 text-xs px-3 py-1.5 border border-accent text-accent font-sans tracking-wide rounded-full">
             {project.type[locale]}
           </span>
