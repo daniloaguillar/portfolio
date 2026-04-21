@@ -194,7 +194,8 @@ function ProjectCard({
           </div>
 
           {/* Caption */}
-          <div className="mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
+          <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
+            <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
@@ -256,7 +257,8 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Caption */}
-          <div className="mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
+          <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
+            <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
                 {project.type[locale]}
