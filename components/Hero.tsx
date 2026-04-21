@@ -30,20 +30,8 @@ export default function Hero() {
         className="absolute left-6 md:left-12 top-0 w-px h-full bg-accent/20 origin-top"
       />
 
-      {/* Year tag */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 1.2 }}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-left ml-6 md:ml-12"
-        style={{ transformOrigin: "0 50%" }}
-      >
-        <span className="text-xs tracking-[0.3em] text-offwhite/30 uppercase font-sans">
-          {t.hero.year}
-        </span>
-      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 pt-24 md:pt-28">
+<div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 pt-24 md:pt-28">
         {/* Kicker */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
