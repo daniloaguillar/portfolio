@@ -112,7 +112,8 @@ export default function Navbar() {
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     onMouseEnter={openDropdown}
                     onMouseLeave={closeDropdown}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[480px] bg-black/98 border border-offwhite/10 rounded-xl shadow-2xl shadow-black/60 overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[480px] rounded-xl overflow-hidden"
+                    style={{ background: "#fff", border: "1px solid rgba(37,37,37,0.12)", boxShadow: "0 8px 40px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08)" }}
                   >
                     <div className="h-px w-full bg-accent" />
                     <div className="p-6 grid grid-cols-2 gap-x-8 gap-y-1">

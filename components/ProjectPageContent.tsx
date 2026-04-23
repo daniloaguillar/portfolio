@@ -113,92 +113,90 @@ function ManualCarousel({
   expandLabel: string;
 }) {
   const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [hoverPaused, setHoverPaused] = useState(false);
 
-  const startAutoSlide = () => {
-    intervalRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % pages.length);
-    }, 3000);
-  };
-
-  const stopAutoSlide = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
+  const isRunning = autoPlay && !hoverPaused;
 
   useEffect(() => {
-    startAutoSlide();
-    return () => stopAutoSlide();
-  }, [pages.length]);
+    if (!isRunning) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % pages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isRunning, pages.length]);
 
   const goTo = (i: number) => {
     setCurrent(i);
-    stopAutoSlide();
-    startAutoSlide();
+    setAutoPlay(false); // stop permanently on manual interaction
   };
 
   const prev = () => goTo((current - 1 + pages.length) % pages.length);
   const next = () => goTo((current + 1) % pages.length);
 
   return (
-    <div
-      className="relative w-full max-w-2xl mx-auto"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Image area */}
+    <div className="relative w-full">
+      {/* Image stage — fixed height, dark background */}
       <div
-        className="relative w-full aspect-[210/297] rounded-2xl overflow-hidden border border-offwhite/10 shadow-2xl shadow-black/60 cursor-pointer"
-        onClick={() => onOpenLightbox(current)}
+        className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+        style={{ height: "72vh", background: "#1c1c1c" }}
+        onMouseEnter={() => setHoverPaused(true)}
+        onMouseLeave={() => setHoverPaused(false)}
       >
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={current}
-            src={pages[current]}
-            alt={`Página ${current + 1}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 w-full h-full object-contain bg-white"
-          />
-        </AnimatePresence>
-
-        {/* Expand overlay */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
+        {/* Images */}
+        <div className="absolute inset-0 flex items-center justify-center p-6 md:p-10">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current}
+              src={pages[current]}
+              alt={`Página ${current + 1}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-black/50 flex items-center justify-center"
-            >
-              <span className="text-white text-xs px-4 py-2 rounded-full font-sans tracking-wide border border-white/40">
-                {expandLabel}
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              transition={{ duration: 0.4 }}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-pointer"
+              onClick={() => { setAutoPlay(false); onOpenLightbox(current); }}
+            />
+          </AnimatePresence>
+        </div>
 
-        {/* Prev / Next arrows */}
+        {/* Expand hint */}
+        <div className="absolute bottom-4 right-4 text-white/30 text-xs font-sans tracking-wide select-none pointer-events-none">
+          {expandLabel}
+        </div>
+
+        {/* Prev arrow */}
         <button
-          onClick={(e) => { e.stopPropagation(); prev(); }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-black/60 border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-colors"
+          onClick={prev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white/70 hover:text-white hover:bg-white/20 transition-all duration-200"
         >
           ←
         </button>
+        {/* Next arrow */}
         <button
-          onClick={(e) => { e.stopPropagation(); next(); }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-black/60 border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-colors"
+          onClick={next}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white/70 hover:text-white hover:bg-white/20 transition-all duration-200"
         >
           →
         </button>
+
+        {/* Progress bar */}
+        {isRunning && (
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/10">
+            <motion.div
+              key={`${current}-${isRunning}`}
+              className="h-full bg-accent"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 5, ease: "linear" }}
+            />
+          </div>
+        )}
       </div>
 
-      {/* Dots + counter */}
+      {/* Dots + counter below */}
       <div className="flex items-center justify-center gap-3 mt-5">
-        <span className="text-xs text-offwhite/30 font-sans tabular-nums w-12 text-right">
+        <span className="text-xs text-[#252525]/30 font-sans tabular-nums w-12 text-right">
           {current + 1} / {pages.length}
         </span>
         <div className="flex gap-1.5">
@@ -206,8 +204,8 @@ function ManualCarousel({
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "bg-accent w-4" : "bg-offwhite/20 hover:bg-offwhite/40"
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === current ? "bg-accent w-4" : "bg-[#252525]/20 hover:bg-[#252525]/40 w-1.5"
               }`}
             />
           ))}
