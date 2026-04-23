@@ -136,10 +136,9 @@ function ManualCarousel({
 
   return (
     <div className="relative w-full">
-      {/* Image stage — fixed height, transparent background */}
+      {/* Image stage — responsive height */}
       <div
-        className="relative w-full rounded-2xl overflow-hidden"
-        style={{ height: "72vh" }}
+        className="relative w-full rounded-2xl overflow-hidden h-[260px] md:h-[72vh]"
         onMouseEnter={() => setHoverPaused(true)}
         onMouseLeave={() => setHoverPaused(false)}
       >

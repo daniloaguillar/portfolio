@@ -259,23 +259,61 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-12"
+            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-10 overflow-y-auto py-24 px-8"
           >
-            <motion.button
+            {/* Projetos + sub-lista */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 }}
-              onClick={() => handleLink("#projetos")}
-              className="font-display text-5xl font-bold text-offwhite/80 hover:text-accent transition-colors duration-300"
+              className="text-center w-full"
             >
-              {t.nav.projects}
-            </motion.button>
+              <button
+                onClick={() => handleLink("#projetos")}
+                className="font-display text-4xl font-normal text-offwhite/80 hover:text-accent transition-colors duration-300 mb-5 block mx-auto"
+              >
+                {t.nav.projects}
+              </button>
+              <div className="flex justify-center gap-10">
+                <div className="text-left">
+                  <p className="text-[9px] tracking-[0.2em] uppercase font-sans mb-2 text-offwhite/40">
+                    {t.projects.sectionSites}
+                  </p>
+                  {siteProjects.map((p) => (
+                    <Link
+                      key={p.key}
+                      href={`/projetos/${p.key}`}
+                      onClick={() => setMenuOpen(false)}
+                      className="block text-sm font-sans py-1 text-offwhite/55 hover:text-accent transition-colors duration-200"
+                    >
+                      {p.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="text-left">
+                  <p className="text-[9px] tracking-[0.2em] uppercase font-sans mb-2 text-offwhite/40">
+                    {t.projects.sectionBranding}
+                  </p>
+                  {brandingProjects.map((p) => (
+                    <Link
+                      key={p.key}
+                      href={`/projetos/${p.key}`}
+                      onClick={() => setMenuOpen(false)}
+                      className="block text-sm font-sans py-1 text-offwhite/55 hover:text-accent transition-colors duration-200"
+                    >
+                      {p.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.16 }}
               onClick={() => handleLink("#sobre")}
-              className="font-display text-5xl font-bold text-offwhite/80 hover:text-accent transition-colors duration-300"
+              className="font-display text-4xl font-normal text-offwhite/80 hover:text-accent transition-colors duration-300"
             >
               {t.nav.about}
             </motion.button>
@@ -284,7 +322,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.24 }}
               onClick={() => handleLink("#contato")}
-              className="font-display text-5xl font-bold text-offwhite/80 hover:text-accent transition-colors duration-300"
+              className="font-display text-4xl font-normal text-offwhite/80 hover:text-accent transition-colors duration-300"
             >
               {t.nav.contact}
             </motion.button>
