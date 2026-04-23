@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces } from "next/font/google";
 import "./globals.css";
+import ClientLayout from "@/components/ClientLayout";
 
 const playfair = Fraunces({
   subsets: ["latin"],
@@ -10,13 +11,17 @@ const playfair = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Danilo Aguillar — Designer UI/UX",
+  title: "Danilo Aguillar — UI/UX & Branding Designer",
   description:
     "Portfólio de Danilo Aguillar, designer gráfico e UI/UX especializado em criar sites que unem beleza e função.",
   keywords: ["designer", "UI/UX", "sites", "portfólio", "web design", "Danilo Aguillar"],
   authors: [{ name: "Danilo Aguillar" }],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
-    title: "Danilo Aguillar — Designer UI/UX",
+    title: "Danilo Aguillar — UI/UX & Branding Designer",
     description: "Design que resolve. Sites que ficam na memória.",
     url: "https://daniloaguillar.com.br",
     siteName: "Danilo Aguillar",
@@ -41,7 +46,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${playfair.variable} antialiased`}>
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -4,13 +4,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 
-const tags = ["UI/UX Design", "Design Gráfico", "Webflow", "Next.js", "Identidade Visual", "Motion Design"];
+const tags = ["UI/UX Design", "Design Gráfico", "Identidade Visual"];
 
 export default function About() {
   const { t } = useLanguage();
 
   return (
-    <section id="sobre" className="py-24 md:py-36 bg-offwhite relative overflow-hidden">
+    <section id="sobre" className="py-24 md:py-36 bg-offwhite relative overflow-hidden" data-cursor-light>
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           {/* Left — Photo placeholder */}

@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Contact() {
   const { t } = useLanguage();
-  const whatsappUrl = "https://wa.me/5500000000000";
+  const whatsappUrl = "https://wa.me/5535998069450";
 
   return (
     <section id="contato" className="py-24 md:py-36 bg-black relative overflow-hidden">
@@ -18,6 +18,13 @@ export default function Contact() {
         </span>
       </div>
 
+      <div
+        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`,
+          backgroundSize: "80px 80px",
+        }}
+      />
       <div className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-offwhite/5" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">

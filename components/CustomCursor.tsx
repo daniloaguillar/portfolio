@@ -7,8 +7,14 @@ export default function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
   const [state, setState] = useState<"default" | "accent" | "light">("default");
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
     const handleMove = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -36,7 +42,9 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseover", handleOver);
     };
-  }, [x, y]);
+  }, [x, y, isTouch]);
+
+  if (isTouch) return null;
 
   return (
     <>
