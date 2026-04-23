@@ -113,13 +113,13 @@ export default function Navbar() {
                     onMouseEnter={openDropdown}
                     onMouseLeave={closeDropdown}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[480px] rounded-xl overflow-hidden"
-                    style={{ background: "#fff", border: "1px solid rgba(37,37,37,0.12)", boxShadow: "0 8px 40px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08)" }}
+                    style={{ background: "#252525", border: "1px solid rgba(245,245,240,0.08)", boxShadow: "0 8px 40px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.12)" }}
                   >
                     <div className="h-px w-full bg-accent" />
                     <div className="p-6 grid grid-cols-2 gap-x-8 gap-y-1">
                       {/* Sites column */}
                       <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-offwhite/25 font-sans mb-3">
+                        <p className="text-[10px] tracking-[0.2em] uppercase font-sans mb-3" style={{ color: "rgba(245,245,240,0.45)" }}>
                           {t.projects.sectionSites}
                         </p>
                         {siteProjects.map((p) => (
@@ -127,16 +127,19 @@ export default function Navbar() {
                             key={p.key}
                             href={`/projetos/${p.key}`}
                             onClick={() => setDropdownOpen(false)}
-                            className="flex items-center gap-2 py-1.5 text-sm text-offwhite/55 hover:text-offwhite transition-colors duration-200 group/item font-sans"
+                            className="flex items-center gap-2 py-1.5 text-sm font-sans transition-colors duration-200 group/item"
+                            style={{ color: "rgba(245,245,240,0.65)" }}
+                            onMouseEnter={e => (e.currentTarget.style.color = "rgba(245,245,240,1)")}
+                            onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,245,240,0.65)")}
                           >
-                            <span className="w-1 h-1 rounded-full bg-accent/40 group-hover/item:bg-accent transition-colors duration-200 shrink-0" />
+                            <span className="w-1 h-1 rounded-full bg-accent/50 group-hover/item:bg-accent transition-colors duration-200 shrink-0" />
                             {p.name}
                           </Link>
                         ))}
                       </div>
                       {/* Branding column */}
                       <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-offwhite/25 font-sans mb-3">
+                        <p className="text-[10px] tracking-[0.2em] uppercase font-sans mb-3" style={{ color: "rgba(245,245,240,0.45)" }}>
                           {t.projects.sectionBranding}
                         </p>
                         {brandingProjects.map((p) => (
@@ -144,9 +147,12 @@ export default function Navbar() {
                             key={p.key}
                             href={`/projetos/${p.key}`}
                             onClick={() => setDropdownOpen(false)}
-                            className="flex items-center gap-2 py-1.5 text-sm text-offwhite/55 hover:text-offwhite transition-colors duration-200 group/item font-sans"
+                            className="flex items-center gap-2 py-1.5 text-sm font-sans transition-colors duration-200 group/item"
+                            style={{ color: "rgba(245,245,240,0.65)" }}
+                            onMouseEnter={e => (e.currentTarget.style.color = "rgba(245,245,240,1)")}
+                            onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,245,240,0.65)")}
                           >
-                            <span className="w-1 h-1 rounded-full bg-accent/40 group-hover/item:bg-accent transition-colors duration-200 shrink-0" />
+                            <span className="w-1 h-1 rounded-full bg-accent/50 group-hover/item:bg-accent transition-colors duration-200 shrink-0" />
                             {p.name}
                           </Link>
                         ))}

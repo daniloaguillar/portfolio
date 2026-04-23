@@ -136,10 +136,10 @@ function ManualCarousel({
 
   return (
     <div className="relative w-full">
-      {/* Image stage — fixed height, dark background */}
+      {/* Image stage — fixed height, transparent background */}
       <div
-        className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-        style={{ height: "72vh", background: "#1c1c1c" }}
+        className="relative w-full rounded-2xl overflow-hidden"
+        style={{ height: "72vh" }}
         onMouseEnter={() => setHoverPaused(true)}
         onMouseLeave={() => setHoverPaused(false)}
       >
@@ -161,21 +161,27 @@ function ManualCarousel({
         </div>
 
         {/* Expand hint */}
-        <div className="absolute bottom-4 right-4 text-white/30 text-xs font-sans tracking-wide select-none pointer-events-none">
+        <div className="absolute bottom-4 right-4 text-xs font-sans tracking-wide select-none pointer-events-none" style={{ color: "rgba(37,37,37,0.35)" }}>
           {expandLabel}
         </div>
 
         {/* Prev arrow */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white/70 hover:text-white hover:bg-white/20 transition-all duration-200"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200"
+          style={{ color: "#252525", borderColor: "rgba(37,37,37,0.25)", background: "rgba(37,37,37,0.06)" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(37,37,37,0.13)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(37,37,37,0.06)")}
         >
           ←
         </button>
         {/* Next arrow */}
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white/70 hover:text-white hover:bg-white/20 transition-all duration-200"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200"
+          style={{ color: "#252525", borderColor: "rgba(37,37,37,0.25)", background: "rgba(37,37,37,0.06)" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(37,37,37,0.13)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(37,37,37,0.06)")}
         >
           →
         </button>
@@ -229,7 +235,7 @@ function NextProjectBar({ currentSlug }: { currentSlug: string }) {
         className="w-full group px-6 md:px-12 py-12 md:py-16 flex items-center justify-between max-w-7xl mx-auto"
       >
         <div className="text-left">
-          <p className="text-xs tracking-[0.2em] uppercase text-offwhite/30 font-sans mb-2">
+          <p className="text-xs tracking-[0.2em] uppercase text-offwhite/55 font-sans mb-2">
             Próximo projeto
           </p>
           <p className="font-display text-2xl md:text-4xl font-light text-offwhite group-hover:text-accent transition-colors duration-300">
@@ -237,7 +243,7 @@ function NextProjectBar({ currentSlug }: { currentSlug: string }) {
           </p>
           <p className="text-xs text-offwhite/40 font-sans mt-1">{next.type[locale]}</p>
         </div>
-        <span className="text-3xl text-offwhite/30 group-hover:text-accent group-hover:translate-x-2 transition-all duration-300">
+        <span className="text-3xl text-offwhite/55 group-hover:text-accent group-hover:translate-x-2 transition-all duration-300">
           →
         </span>
       </button>
@@ -438,7 +444,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
               {/* Left: about + deliverables */}
               <div>
                 <div className="mb-10">
-                  <h4 className="text-[10px] tracking-[0.25em] uppercase text-offwhite/30 font-sans mb-4">
+                  <h4 className="text-[10px] tracking-[0.25em] uppercase text-offwhite/55 font-sans mb-4">
                     {tp.aboutLabel}
                   </h4>
                   <p className="text-offwhite/75 font-sans leading-relaxed text-base md:text-lg">
@@ -446,7 +452,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                   </p>
                 </div>
                 <div className="mb-10">
-                  <h4 className="text-[10px] tracking-[0.25em] uppercase text-offwhite/30 font-sans mb-4">
+                  <h4 className="text-[10px] tracking-[0.25em] uppercase text-offwhite/55 font-sans mb-4">
                     {tp.deliveredLabel}
                   </h4>
                   <p className="text-offwhite/75 font-sans leading-relaxed text-base md:text-lg">
