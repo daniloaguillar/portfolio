@@ -58,12 +58,14 @@ function ProjectCard({
 
           <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
             <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
-                {project.type[locale]}
-              </span>
-              <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
-            </div>
+            {!isBranding && (
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
+                  {project.type[locale]}
+                </span>
+                <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
+              </div>
+            )}
             <div className="flex items-center justify-between gap-4">
               <h3
                 className={`font-display font-light text-[#252525] leading-tight ${
@@ -72,13 +74,18 @@ function ProjectCard({
               >
                 {project.name}
               </h3>
-              <motion.span
-                animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
-                transition={{ duration: 0.25 }}
-                className="text-accent text-sm font-sans shrink-0"
-              >
-                →
-              </motion.span>
+              <div className="flex items-center gap-3 shrink-0">
+                {isBranding && (
+                  <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
+                )}
+                <motion.span
+                  animate={hovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                  transition={{ duration: 0.25 }}
+                  className="text-accent text-sm font-sans"
+                >
+                  →
+                </motion.span>
+              </div>
             </div>
           </div>
         </>
@@ -107,10 +114,12 @@ function ProjectCard({
           <div className="relative overflow-hidden mt-2 bg-[#F5F5F0] border border-accent rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-5 py-4 pb-5">
             <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: `linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)`, backgroundSize: "40px 40px" }} />
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
-                {project.type[locale]}
-              </span>
-              <span className="text-xs text-[#252525]/45 font-sans">{project.year}</span>
+              {!isBranding && (
+                <span className="text-xs px-3 py-1 border border-accent/60 text-accent font-sans tracking-wide rounded-full">
+                  {project.type[locale]}
+                </span>
+              )}
+              <span className={`text-xs text-[#252525]/45 font-sans ${isBranding ? "ml-auto" : ""}`}>{project.year}</span>
             </div>
             <div className="flex items-center justify-between gap-4">
               <h3 className="text-xl md:text-2xl font-display font-light text-[#252525] leading-tight">

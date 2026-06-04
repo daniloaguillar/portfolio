@@ -128,7 +128,7 @@ export const brandingProjects = [
   {
     id: 10,
     key: "continente" as const,
-    name: "Continente Experience",
+    name: "Continente Emocional",
     type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
     year: 2026,
     url: "",

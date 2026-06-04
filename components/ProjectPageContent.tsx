@@ -136,7 +136,7 @@ function ManualCarousel({
 
   return (
     <div className="relative w-full">
-      {/* Image stage — responsive height */}
+      {/* Image stage, responsive height */}
       <div
         className="relative w-full rounded-2xl overflow-hidden h-[260px] md:h-[72vh]"
         onMouseEnter={() => setHoverPaused(true)}
@@ -242,7 +242,7 @@ function NextProjectBar({ currentSlug }: { currentSlug: string }) {
           </p>
           <p className="text-xs text-offwhite/40 font-sans mt-1">{next.type[locale]}</p>
         </div>
-        <span className="text-3xl text-offwhite/55 group-hover:text-accent group-hover:translate-x-2 transition-all duration-300">
+        <span className="text-3xl font-bold text-accent group-hover:translate-x-2 transition-all duration-300">
           →
         </span>
       </button>
@@ -306,7 +306,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
       <main className="min-h-screen bg-black pt-20 md:pt-24">
         {/* ── Hero section ── */}
         <section className="relative bg-black overflow-hidden">
-          {/* Grid pattern — same as home hero, 15% less opacity (0.06 vs 0.07) */}
+          {/* Grid pattern, same as home hero, 15% less opacity (0.06 vs 0.07) */}
           <div
             className="absolute inset-0 opacity-[0.06]"
             style={{
@@ -387,7 +387,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                   >
                     <img
                       src={project.siteImage}
-                      alt={`${project.name} — site completo`}
+                      alt={`${project.name}, site completo`}
                       className="w-full site-scroll-anim"
                       style={{ display: "block", willChange: "transform" }}
                     />
@@ -395,7 +395,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                   <div className="block md:hidden relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-offwhite/10 shadow-2xl shadow-black/60">
                     <img
                       src={project.siteImageMobile ?? project.siteImage}
-                      alt={`${project.name} — site mobile`}
+                      alt={`${project.name}, site mobile`}
                       className="w-full site-scroll-anim"
                       style={{ display: "block", willChange: "transform" }}
                     />
@@ -403,7 +403,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                 </>
               )}
 
-              {/* Brand manual — auto-sliding carousel (capitalconsorcio) */}
+              {/* Brand manual, auto-sliding carousel (capitalconsorcio) */}
               {isBrandingWithManualPages && (
                 <ManualCarousel
                   pages={project.manualPages!}
@@ -412,7 +412,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                 />
               )}
 
-              {/* Brand manual — single image (traumaid, continente) */}
+              {/* Brand manual, single image (traumaid, continente) */}
               {isBrandingWithSingleManual && (
                 <div className="relative max-w-3xl mx-auto">
                   <button
@@ -421,7 +421,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                   >
                     <img
                       src={project.manual!}
-                      alt={`${project.name} — Identidade Visual`}
+                      alt={`${project.name}, identidade visual`}
                       className="w-full block"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/40 transition-colors duration-300 flex items-center justify-center">
@@ -477,7 +477,7 @@ export default function ProjectPageContent({ slug }: { slug: string }) {
                   <div className="relative w-full rounded-xl overflow-hidden border border-offwhite/10 shadow-lg">
                     <img
                       src={project.image}
-                      alt={`${project.name} — capa`}
+                      alt={`${project.name}, capa`}
                       className="w-full block"
                     />
                   </div>

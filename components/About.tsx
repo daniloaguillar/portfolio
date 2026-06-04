@@ -13,7 +13,7 @@ export default function About() {
     <section id="sobre" className="py-24 md:py-36 bg-offwhite relative overflow-hidden" data-cursor-light>
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-          {/* Left — Photo placeholder */}
+          {/* Foto */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -39,7 +39,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right — Text */}
+          {/* Texto */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -69,10 +69,9 @@ export default function About() {
               <div className="space-y-5 text-black/60 font-sans text-base leading-relaxed">
                 <p>{t.about.p1}</p>
                 <p>{t.about.p2}</p>
-                <p>{t.about.p3}</p>
               </div>
 
-              {/* Tags — contorno e texto vermelhos */}
+              {/* Tags com contorno e texto vermelhos */}
               <div className="flex flex-wrap gap-2 mt-8">
                 {tags.map((tag) => (
                   <span

@@ -48,7 +48,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Quadrado vazado — segue com spring leve */}
+      {/* Quadrado vazado, segue com spring leve */}
       <motion.div
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}
         animate={{

@@ -37,15 +37,12 @@ export default function Contact() {
         >
           <span className="line-accent" />
 
-          <h2 className="font-display text-5xl md:text-7xl font-light text-offwhite leading-tight mb-6">
+          <h2 className="font-display text-5xl md:text-7xl font-light text-offwhite leading-tight mb-10">
             {t.contact.line1}
             <br />
             {t.contact.line2}{" "}
             <span className="italic text-accent">{t.contact.line2italic}</span>
           </h2>
-
-          <p className="text-offwhite/40 font-sans mb-4 leading-relaxed">{t.contact.sub}</p>
-          <p className="text-sm text-offwhite/25 font-sans mb-12">{t.contact.note}</p>
 
           <motion.a
             href={whatsappUrl}
@@ -62,20 +59,6 @@ export default function Contact() {
             <span>{t.contact.cta}</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </motion.a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4"
-        >
-          <div className="w-px h-24 bg-offwhite/10" />
-          <span className="text-xs tracking-[0.3em] text-offwhite/15 uppercase font-sans rotate-90 whitespace-nowrap">
-            daniloaguillar.com.br
-          </span>
-          <div className="w-px h-24 bg-offwhite/10" />
         </motion.div>
       </div>
     </section>

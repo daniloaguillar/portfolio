@@ -15,11 +15,11 @@ const BASE_URL = "https://www.daniloaguillar.com.br";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Danilo Aguillar — UI/UX & Branding Designer",
-    template: "%s — Danilo Aguillar",
+    default: "Danilo Aguillar | Designer de UI/UX e Identidade Visual",
+    template: "%s | Danilo Aguillar",
   },
   description:
-    "Portfólio de Danilo Aguillar, designer gráfico e UI/UX especializado em criar sites, landing pages e identidades visuais que unem beleza e resultado.",
+    "Portfólio de Danilo Aguillar, designer gráfico e de interfaces. Crio sites, landing pages e identidades visuais com capricho no visual e foco em resultado.",
   keywords: [
     "designer gráfico",
     "UI/UX designer",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: "Danilo Aguillar — UI/UX & Branding Designer",
+    title: "Danilo Aguillar | Designer de UI/UX e Identidade Visual",
     description: "Design que resolve. Sites que ficam na memória.",
     url: BASE_URL,
     siteName: "Danilo Aguillar",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
         url: "/juliana-goes.webp",
         width: 1200,
         height: 630,
-        alt: "Danilo Aguillar — UI/UX & Branding Designer",
+        alt: "Danilo Aguillar | Designer de UI/UX e Identidade Visual",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Danilo Aguillar — UI/UX & Branding Designer",
+    title: "Danilo Aguillar | Designer de UI/UX e Identidade Visual",
     description: "Design que resolve. Sites que ficam na memória.",
     images: ["/juliana-goes.webp"],
   },
@@ -95,9 +95,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Danilo Aguillar",
-              jobTitle: "UI/UX & Branding Designer",
+              jobTitle: "Designer de UI/UX e Identidade Visual",
               description:
-                "Designer gráfico e UI/UX especializado em criar sites, landing pages e identidades visuais que unem beleza e resultado.",
+                "Designer gráfico e de interfaces. Crio sites, landing pages e identidades visuais com capricho no visual e foco em resultado.",
               url: "https://www.daniloaguillar.com.br",
               image: "https://www.daniloaguillar.com.br/danilo.webp",
               knowsAbout: [
@@ -116,7 +116,7 @@ export default function RootLayout({
               mainEntityOfPage: {
                 "@type": "WebSite",
                 "@id": "https://www.daniloaguillar.com.br",
-                name: "Portfólio — Danilo Aguillar",
+                name: "Portfólio de Danilo Aguillar",
                 url: "https://www.daniloaguillar.com.br",
               },
             }),

@@ -179,13 +179,14 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full" />
             </button>
 
-            <button
-              onClick={() => handleLink("#contato")}
-              className="relative text-sm font-medium tracking-wide text-offwhite/60 hover:text-offwhite transition-colors duration-300 group"
+            <a
+              href="https://wa.me/5535998069450"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium tracking-wide px-5 py-2 rounded-lg bg-accent text-white hover:bg-accent/90 transition-colors duration-300"
             >
               {t.nav.contact}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full" />
-            </button>
+            </a>
 
             {/* Language selector */}
             <div className="flex items-center gap-1 ml-2 border-l border-offwhite/10 pl-6">
@@ -317,15 +318,18 @@ export default function Navbar() {
             >
               {t.nav.about}
             </motion.button>
-            <motion.button
+            <motion.a
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.24 }}
-              onClick={() => handleLink("#contato")}
+              href="https://wa.me/5535998069450"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
               className="font-display text-4xl font-normal text-offwhite/80 hover:text-accent transition-colors duration-300"
             >
               {t.nav.contact}
-            </motion.button>
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

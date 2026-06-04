@@ -33,7 +33,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: pageUrl },
     openGraph: {
-      title: `${project.name} — Danilo Aguillar`,
+      title: `${project.name} | Danilo Aguillar`,
       description,
       url: pageUrl,
       siteName: "Danilo Aguillar",
@@ -43,7 +43,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.name} — Danilo Aguillar`,
+      title: `${project.name} | Danilo Aguillar`,
       description,
       images: ogImage?.map((i) => i.url),
     },

@@ -32,20 +32,7 @@ export default function Hero() {
 
 
 <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 pt-24 md:pt-28">
-        {/* Kicker */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="flex items-center gap-3 mb-8 md:mb-12"
-        >
-          <div className="w-8 h-px bg-accent" />
-          <span className="text-xs tracking-[0.25em] text-accent uppercase font-sans font-medium">
-            {t.hero.tag}
-          </span>
-        </motion.div>
-
-        {/* Headline — sem overflow-hidden para não cortar descenders */}
+        {/* Headline sem overflow-hidden para não cortar descenders */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,15 +73,6 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="flex flex-col md:flex-row md:items-end gap-8 md:gap-0 md:justify-between"
         >
-          <p className="text-sm md:text-base text-offwhite/40 font-sans max-w-md leading-relaxed">
-            {t.hero.sub.split("\n").map((line, i) => (
-              <span key={i}>
-                {line}
-                {i < t.hero.sub.split("\n").length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="https://wa.me/5535998069450"
