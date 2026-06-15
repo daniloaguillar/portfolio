@@ -155,6 +155,8 @@ export default function Projects() {
   const { t } = useLanguage();
   const featured = siteProjects[0];
   const restSites = siteProjects.slice(1);
+  const featuredBranding = brandingProjects.find((p) => p.featured);
+  const restBranding = brandingProjects.filter((p) => !p.featured);
 
   return (
     <section id="projetos" className="py-24 md:py-36 bg-black">
@@ -210,17 +212,28 @@ export default function Projects() {
           <SectionLabel label={t.projects.sectionBranding} />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-          {brandingProjects.map((p) => (
+        <div className="flex flex-col gap-3 md:gap-4">
+          {featuredBranding && (
             <ProjectCard
-              key={p.id}
-              project={p}
-              featured={p.featured}
+              project={featuredBranding}
+              featured
               isBranding
-              onClick={() => router.push(`/projetos/${p.key}`)}
+              onClick={() => router.push(`/projetos/${featuredBranding.key}`)}
               viewLabel={t.projects.view}
             />
-          ))}
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+            {restBranding.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                featured={false}
+                isBranding
+                onClick={() => router.push(`/projetos/${p.key}`)}
+                viewLabel={t.projects.view}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

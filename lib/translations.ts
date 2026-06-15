@@ -80,6 +80,12 @@ export const translations = {
           deliverables:
             "Criação de logo, paleta de cores, tipografia, papelaria e manual de identidade visual.",
         },
+        bathaus: {
+          description:
+            "Identidade visual para a Bathaus Engenharia, especializada em projetos hidráulicos e elétricos para obras em todo o Brasil. Criei uma marca técnica e confiável, que passa solidez e traduz a ideia de que todo projeto é a base do que fica de pé.",
+          deliverables:
+            "Criação de logo, paleta de cores, tipografia e identidade visual completa, do símbolo às aplicações da marca.",
+        },
         traumaid: {
           description:
             "Identidade visual para o Curso Trauma e Regulação, da psicóloga Ediane Ribeiro. Criei uma marca acolhedora, que respeita a sensibilidade do tema, e que depois virou base pra landing page do curso.",
@@ -191,6 +197,12 @@ export const translations = {
           deliverables:
             "Logo creation, color palette, typography, stationery and visual identity manual.",
         },
+        bathaus: {
+          description:
+            "Visual identity for Bathaus Engenharia, specialized in hydraulic and electrical engineering projects for construction sites across Brazil. I created a technical, trustworthy brand that conveys solidity and carries the idea that every project is the foundation of what stands.",
+          deliverables:
+            "Logo creation, color palette, typography and a full visual identity, from the symbol to the brand applications.",
+        },
         traumaid: {
           description:
             "Visual identity for the Curso Trauma e Regulação by psychologist Ediane Ribeiro. I built a warm brand that respects how sensitive the subject is, and it later became the base for the course landing page.",
@@ -301,6 +313,12 @@ export const translations = {
             "Identidad visual para Capital Consórcio, del mercado financiero. Creé una marca sólida, que transmite confianza y ayuda a la empresa a destacarse en un sector muy competitivo.",
           deliverables:
             "Creación de logo, paleta de colores, tipografía, papelería y manual de identidad visual.",
+        },
+        bathaus: {
+          description:
+            "Identidad visual para Bathaus Engenharia, especializada en proyectos hidráulicos y eléctricos para obras en todo Brasil. Creé una marca técnica y confiable, que transmite solidez y traduce la idea de que todo proyecto es la base de lo que se mantiene en pie.",
+          deliverables:
+            "Creación de logo, paleta de colores, tipografía e identidad visual completa, desde el símbolo hasta las aplicaciones de la marca.",
         },
         traumaid: {
           description:

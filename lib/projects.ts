@@ -114,6 +114,18 @@ export const brandingProjects = [
     tags: ["Logo", "Paleta de cores", "Tipografia", "Manual de marca"],
   },
   {
+    id: 11,
+    key: "bathaus" as const,
+    name: "Bathaus Engenharia",
+    type: { pt: "Identidade Visual", en: "Visual Identity", es: "Identidad Visual" },
+    year: 2026,
+    url: "",
+    featured: false,
+    image: "/bathaus.webp",
+    manual: "/bathaus-manual.jpg",
+    tags: ["Logo", "Paleta de cores", "Tipografia", "Identidade visual"],
+  },
+  {
     id: 9,
     key: "traumaid" as const,
     name: "Curso Trauma e Regulação",
