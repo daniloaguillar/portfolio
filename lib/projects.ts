@@ -122,6 +122,7 @@ export const brandingProjects = [
     url: "",
     featured: false,
     image: "/bathaus.webp",
+    imageMobile: "/bathaus-mobile.webp",
     manual: "/bathaus-manual.jpg",
     tags: ["Logo", "Paleta de cores", "Tipografia", "Identidade visual"],
   },
