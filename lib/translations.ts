@@ -38,6 +38,12 @@ export const translations = {
           deliverables:
             "Direção visual, design de interface com tipografia expressiva e estrutura de conteúdo. Um site que combina com a identidade forte dela.",
         },
+        stripoli: {
+          description:
+            "Landing page para a Clínica Strípoli, voltada à saúde emocional corporativa e ao atendimento da NR-1. O desafio foi transformar um tema técnico e regulatório numa experiência acolhedora e sensorial, que passa confiança e conduz a empresa até o agendamento de um diagnóstico.",
+          deliverables:
+            "Design da landing page, hierarquia de conteúdo e identidade visual aplicada ao digital, com seções pensadas pra apresentar os serviços e converter visitas em contato.",
+        },
         fagulha: {
           description:
             "Identidade digital para um estúdio criativo de personalidade forte. O desafio aqui foi equilibrar a parte mais artística com a clareza que o visitante precisa pra entender o que o estúdio faz.",
@@ -155,6 +161,12 @@ export const translations = {
           deliverables:
             "Visual direction, interface design with expressive typography and content structure. A site that matches her strong, distinctive identity.",
         },
+        stripoli: {
+          description:
+            "Landing page for Clínica Strípoli, focused on corporate emotional health and compliance with NR-1, Brazil's psychosocial risk regulation. The challenge was turning a technical, regulatory topic into a warm, sensory experience that builds trust and guides companies toward booking a diagnosis.",
+          deliverables:
+            "Landing page design, content hierarchy and visual identity applied to digital, with sections built to present the services and turn visits into contact.",
+        },
         fagulha: {
           description:
             "Digital identity for a creative studio with a strong personality. The challenge here was balancing the artistic side with the clarity people need to understand what the studio actually does.",
@@ -271,6 +283,12 @@ export const translations = {
             "Sitio personal de Juliana Goes, con un diseño audaz y lleno de personalidad. Usé tipografía expresiva y colores llamativos para crear una presencia digital que llama la atención enseguida.",
           deliverables:
             "Dirección visual, diseño de interfaz con tipografía expresiva y estructura de contenido. Un sitio que combina con su identidad fuerte.",
+        },
+        stripoli: {
+          description:
+            "Landing page para la Clínica Strípoli, enfocada en la salud emocional corporativa y en el cumplimiento de la NR-1. El reto fue transformar un tema técnico y regulatorio en una experiencia acogedora y sensorial, que transmite confianza y lleva a la empresa a agendar un diagnóstico.",
+          deliverables:
+            "Diseño de landing page, jerarquía de contenido e identidad visual aplicada al digital, con secciones pensadas para presentar los servicios y convertir visitas en contacto.",
         },
         fagulha: {
           description:
