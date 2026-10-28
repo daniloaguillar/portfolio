@@ -158,7 +158,17 @@ export default function Navbar() {
                         ))}
                       </div>
                     </div>
-                    <div className="px-6 pb-5">
+                    <div className="px-6 pb-5 flex items-center justify-between">
+                      <button
+                        onClick={() => { setDropdownOpen(false); handleLink("#criativos"); }}
+                        className="flex items-center gap-2 text-sm font-sans transition-colors duration-200 group/item"
+                        style={{ color: "rgba(245,245,240,0.65)" }}
+                        onMouseEnter={e => (e.currentTarget.style.color = "rgba(245,245,240,1)")}
+                        onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,245,240,0.65)")}
+                      >
+                        <span className="w-1 h-1 rounded-full bg-accent/50 group-hover/item:bg-accent transition-colors duration-200 shrink-0" />
+                        {t.projects.sectionCreatives}
+                      </button>
                       <button
                         onClick={() => { setDropdownOpen(false); handleLink("#projetos"); }}
                         className="text-xs text-accent/70 hover:text-accent font-sans tracking-wide transition-colors duration-200"
@@ -307,6 +317,12 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
+              <button
+                onClick={() => handleLink("#criativos")}
+                className="mt-5 text-sm font-sans text-offwhite/55 hover:text-accent transition-colors duration-200"
+              >
+                {t.projects.sectionCreatives}
+              </button>
             </motion.div>
 
             <motion.button

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 import { siteProjects, brandingProjects, type ProjectData } from "@/lib/projects";
+import Creatives from "@/components/Creatives";
 
 function ProjectCard({
   project,
@@ -235,6 +236,9 @@ export default function Projects() {
             ))}
           </div>
         </div>
+
+        {/* Criativos */}
+        <Creatives />
       </div>
     </section>
   );
